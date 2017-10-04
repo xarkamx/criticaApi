@@ -1,0 +1,10 @@
+{
+    "posts": {
+        "name": "posts",
+        "placeholder": "Selecciona los Posts para portada",
+        "className": "form-control",
+        "type": "select",
+        "required":true,
+        "label": "Posts"
+    }
+}

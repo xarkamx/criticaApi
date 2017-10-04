@@ -1,0 +1,39 @@
+{
+    "Escritorio": {
+        "url": "/home",
+        "fa": "fa-home"
+    },
+    "Post":{
+        "fa": "fa-newspaper-o",
+        "childs": {
+            "Ver Posts": {
+                "url": "/posts/vista"
+            },
+            "Organizar Post de Portada": {
+                "url": "/posts/sorter"
+            }
+        }  
+    },
+    "Representantes": {
+        "fa": "fa-users",
+        "childs": {
+            "Ver Representantes": {
+                "url": "/empresas/vista"
+            },
+            "Crear Representante": {
+                "url": "/empresas/add"
+            }
+        }
+    },
+    "Usuarios": {
+        "fa": "fa-user-circle",
+        "childs": {
+            "Ver Usuarios": {
+                "url": "/usuarios/vista"
+            },
+            "Agregar": {
+                "url": "/usuarios/add"
+            }
+        }
+    }
+}

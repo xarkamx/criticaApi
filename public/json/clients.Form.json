@@ -1,0 +1,44 @@
+{
+    "nombre": {
+        "name": "nombre",
+        "placeholder": 0,
+        "className": "form-control",
+        "type": "text",
+        "label": "nombre"
+    },
+    "email": {
+        "name": "email",
+        "placeholder": 0,
+        "className": "form-control",
+        "type": "text",
+        "label": "email"
+    },
+    "password": {
+        "name": "password",
+        "placeholder": 0,
+        "className": "form-control",
+        "type": "text",
+        "label": "password"
+    },
+    "telefono": {
+        "name": "telefono",
+        "placeholder": 0,
+        "className": "form-control",
+        "type": "text",
+        "label": "telefono"
+    },
+    "direccion": {
+        "name": "direccion",
+        "placeholder": 0,
+        "className": "form-control",
+        "type": "text",
+        "label": "direccion"
+    },
+    "empresa": {
+        "name": "empresa",
+        "placeholder": 0,
+        "className": "form-control",
+        "type": "text",
+        "label": "empresa"
+    },
+}

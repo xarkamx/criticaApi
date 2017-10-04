@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="manifest" href="/manifest.json">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <title>@yield('title')</title>
+
+    <link href="/themes/inspina/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/17fea649d6.js"></script>
+    
+    <link href="/themes/inspina/css/animate.css" rel="stylesheet">
+    <link href="/themes/inspina/css/style.css" rel="stylesheet">
+    <link href="/css/alter.css" rel="stylesheet">
+    <link href="/plugins/datepicker/datepicker3.css" rel="stylesheet">
+    <link href="/plugins/chosen/chosen.min.css" rel="stylesheet">
+    
+    @yield('css')
+
+</head>
+
+<body data-csrf_token={{csrf_token()}}>
+<script src="/js/main/helpers.js"></script>
+<script src="/js/main/ajax.js"></script>
+<script src="/js/main/templates.js"></script>
+<script src="/js/main/dom.js"></script>
+<script src="/js/main/tools.js"></script>
+<script src="/custom/views/global/menu.js"></script>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"></strong>
+                             </span> <span class="text-muted text-xs block"> <b class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="/admin/login">Logout</a></li>
+                            </ul>
+                    </div>
+                    <div class="logo-element">
+                        IN+
+                    </div>
+                </li>
+                    <li class='template'>
+                        <a href="#" class='url'><i class="fa"></i> 
+                        <span class="nav-label name"></span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level submenu collapse">
+                            <li class='childs'><a href="#" ></a><li>
+                        </ul>
+                    </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="defaultBackground">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown fnoti">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary unseen">0</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="/">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw "></i> <span class='titulo'></span>
+                                    <span class="pull-right text-muted small origen">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                    <li>
+                        <a href="/admin/login">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                @yield('content')
+            </div>
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                <strong>Rastreo RCL</strong>
+            </div>
+            <div>
+                <strong>Desarrollado por</strong> <a href='http://web-gdl.com'>WEBGDL</a> 2017-2018
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="/themes/inspina/js/jquery-2.1.1.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/themes/inspina/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/themes/inspina/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="/plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- Custom and plugin javascript -->
+<script src="/themes/inspina/js/inspinia.js"></script>
+<script src="/themes/inspina/js/plugins/pace/pace.min.js"></script>
+<script>
+    let tn=document.querySelector('.template');
+    new Menu("/json/menu.json").printer(tn);
+</script>
+@yield('footerScripts')
+<script src="/plugins/chosen/chosen.jquery.min.js"></script>
+</body>
+
+</html>

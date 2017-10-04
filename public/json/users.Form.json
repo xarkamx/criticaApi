@@ -1,0 +1,34 @@
+{
+    "name": {
+        "name": "name",
+        "placeholder": "Ingresa tu nombre de usuario",
+        "className": "form-control",
+        "type": "text",
+        "label": "Nombre de usuario",
+        "required":true
+    },
+    "email": {
+        "name": "email",
+        "placeholder": "tucorreo@correo.com",
+        "className": "form-control",
+        "type": "email",
+        "required":true,
+        "label": "Correo Electronico"
+    },
+    "password": {
+        "name": "password",
+        "placeholder":"Ingresa tu contraseña",
+        "className": "form-control",
+        "type": "password",
+        "required":true,
+        "label": "Contraseña"
+    },
+    "confirmPass": {
+        "name": "confirmPass",
+        "placeholder": "Confirma tu contraseña",
+        "className": "form-control",
+        "type": "password",
+        "required":true,
+        "label": "Confirma tu contraseña"
+    }
+}

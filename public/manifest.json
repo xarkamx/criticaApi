@@ -1,0 +1,16 @@
+{
+  "short_name": "Critica",
+  "name": "Sistema de periodico Critica",
+  "icons": [
+    {
+      "src": "/uploads/logos/critica.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/?utm_source=bienvenido",
+  "background_color": "#272b30",
+  "theme_color":"#cc0000",
+  "display": "fullscreen",
+  "gcm_sender_id": "103953800507"
+}
