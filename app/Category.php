@@ -21,10 +21,17 @@ class Category extends Model
         $categories=[];
         $tools=new Tools();
         foreach($data as $key=> $item){
+            $currentCat=$this->getCategoryById($placeID,$item['id']);
+            if(count($currentCat)>0){
+                continue;
+            }
             $categories[$key]['wpId']=$item['id'];
             $categories[$key]['placeID']=$placeID;
             $categories[$key]['category']=$item['name'];
             $categories[$key]['count']=$item['count'];
+        }
+        if($categories==undefined){
+            return [false];
         }
         $tools->massiveBulk("categories",$categories);
         return $categories;
@@ -40,7 +47,6 @@ class Category extends Model
     'Local',
     'Internacional',
     'Impresa',
-    'Video',
     'Finanzas/Empresas',
     'Ciencia',
     'Cultura',
@@ -60,5 +66,11 @@ class Category extends Model
             $cat[]=$result;
         }
         return $cat;
+    }
+    
+    public function getCategoryById($placeID,$categoryID){
+        $sql="SELECT * FROM `categories` 
+            where placeId='$placeID' and wpId='$categoryID'";
+        return \DB::select($sql);
     }
 }

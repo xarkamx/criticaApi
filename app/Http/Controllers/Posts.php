@@ -9,6 +9,7 @@ use App\Place;
 use App\Post;
 use App\Bitacora;
 use App\Portada;
+use App\Category;
 class Posts extends Controller
 {
     /**
@@ -257,7 +258,19 @@ class Posts extends Controller
     */
     function postByCategoryId($placeID,$categoryID){
          $post=new Post();
+         $bitacora=new Bitacora();
+         $category=new Category();
+         $catData=$category->getCategoryById($placeID,$categoryID);
+         $catName=$catData[0]->category;
+         $bitacora->setEvent(
+            "Categoria $catName visitada",
+            $placeID,
+            "categories",
+            $categoryID
+            );
          return $post->getPostByCategory($placeID,$categoryID);
+         
+         
     }
     /**
     *@api {get} api/posts/home

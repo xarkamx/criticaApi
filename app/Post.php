@@ -46,7 +46,7 @@ class Post extends Model{
             $post['date']=$item['date'];
             $post['place']=$placeID;
             $post['title']=$item['title']['rendered'];
-            $post['content']=$item['content']['rendered'];
+            $post['content']=preg_replace("/'/",'',$item['content']['rendered']);
             $post['excerpt']=$item['excerpt']['rendered'];
             $post['categories']=json_encode($item['categories']);
             $post['link']=$item['link'];
@@ -74,10 +74,10 @@ class Post extends Model{
         
         foreach($data as $key=>$item){
             if(!isset($item['_embedded']['wp:featuredmedia'])){
-                $item['_embedded']['wp:featuredmedia'][0]['source_url']="https://www.criticajalisco.com/wp-content/themes/critica2/img/logos/critica.png";
+                $item['_embedded']['wp:featuredmedia'][0]['source_url']="http://www.criticajalisco.com/wp-content/themes/critica2/img/logos/critica.png";
             }
             $media=$item['_embedded']['wp:featuredmedia'][0];
-            $thumb="https://www.criticajalisco.com/wp-content/themes/critica2/img/logos/critica.png";
+            $thumb="http://www.criticajalisco.com/wp-content/themes/critica2/img/logos/critica.png";
             if(isset($media['media_details']['sizes']['thumbnail'])){
                $thumb=$media['media_details']['sizes']['thumbnail']['source_url'];
             }
@@ -119,7 +119,6 @@ class Post extends Model{
         }else{
             return $this->get();
         }
-        
     }
     private function searchQuery($search){
         $searchs=preg_split("/ /",$search);
@@ -146,4 +145,5 @@ class Post extends Model{
         }
         return $postByCategory;
     }
+    
 }

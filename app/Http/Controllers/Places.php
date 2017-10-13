@@ -66,7 +66,6 @@ class Places extends Controller
     function location(Request $request){
         $place=new Place();
         $placeName=$place->getPlaceNameByCoordinates($request->lat,$request->lon);
-        
         $response=$place->getPlaceIdByName($placeName);
         return $response;
     }

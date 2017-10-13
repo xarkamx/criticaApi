@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Bitacora extends Migration
+class ReporteC extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class Bitacora extends Migration
      */
     public function up()
     {
-        Schema::create('bitacora', function (Blueprint $table) {
+        Schema::create('reporteCiudadano', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('evento');
-            $table->integer('placeID');
-            $table->text('type');
-            $table->integer('keyID');
+            $table->text('coordenadas');
+            $table->text('correo');
+            $table->text('descripcion');
+            $table->text('imagen');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class Bitacora extends Migration
      */
     public function down()
     {
-        Schema::drop('bitacora');
+        Schema::drop('reporteCiudadano');
     }
 }

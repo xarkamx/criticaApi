@@ -15,9 +15,14 @@ class Bitacora extends Model
                 ['placeID','=',$placeID]
             ])->orderBy('id','desc')->limit(0,1)->get();        
     }
-    function setEvent($event,$placeID){
+    function setEvent($event,$placeID,$type="system",$id=0){
         $tools=new Tools();
-        return $tools->saveByModel($this,["evento"=>$event,"placeID"=>$placeID]);
+        return $tools->saveByModel($this,[
+            "evento"=>$event,
+            "placeID"=>$placeID,
+            "type"=>$type,
+            "keyID"=>$id
+            ]);
     }
     function isCoolDownOver($coolDown,$event,$placeID){
         $data=\DB::select("select * from bitacora

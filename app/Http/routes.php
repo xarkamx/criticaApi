@@ -47,11 +47,7 @@ Route::group(['prefix'=>'api'],function(){
     Route::get("/",function(){
         return Redirect::to('/apidoc');
     });
-    Route::get("/clients","Clients@index");
-    Route::post('users',"Users@set");
-    Route::get("/clients/all/{value?}","Clients@index");
-    Route::post("/clients","Clients@save");
-    Route::delete("/clients/{id}","Clients@delete");
+    
     
     Route::get("/users/all/{id?}","Users@index");
     Route::get("/users/current","Users@currentUser");
@@ -94,6 +90,13 @@ Route::group(['prefix'=>'api'],function(){
     
     Route::post('/voiceReader',"VoiceReaders@read");
     Route::get('/voiceReader',"VoiceReaders@read");
+    
+    Route::get('/media/wp/{placeID}',"Multimedia@update");
+    Route::get('/media/videos/{placeID}',"Multimedia@videos");
+    
+    Route::post('reporte',"reporteCiudadano@upload");
+    
+    Route::get('/bitacora',"Bitacoras@index");
     
 });
 Route::group(["prefix"=>"test","middleware"=>'admin'],function(){
