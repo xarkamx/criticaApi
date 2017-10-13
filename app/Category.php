@@ -30,7 +30,7 @@ class Category extends Model
             $categories[$key]['category']=$item['name'];
             $categories[$key]['count']=$item['count'];
         }
-        if($categories==undefined){
+        if(count($categories)==0){
             return [false];
         }
         $tools->massiveBulk("categories",$categories);
