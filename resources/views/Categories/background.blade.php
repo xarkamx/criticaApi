@@ -1,5 +1,5 @@
 @extends('header.header')
-@section('title','critica | Agregar Empresas')
+@section('title','Critica | Cambiar Background')
 @section('css')
 <link href="/themes/inspina/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 @endsection
@@ -7,11 +7,11 @@
 <div class="col-lg-12">
                     <div class='panel panel-default transparent'>
                         <div class='panel-heading'>
-                            <h1>Empresas/Representantes</h1>
+                            <h1>Categorias Background</h1>
                         </div>
                         <div class='panel-body'>
-                            <form class='col-sm-8 col-md-offset-2 panel' action='/api/users' method='post' data-id="{{$id}}">
-                                <div class='empresaForm'></div>
+                            <form class='col-sm-8 col-md-offset-2 panel' action='/api/users' method='post'>
+                                <div class='backgroundForm'></div>
                                 <input type="text" name="_token" class='hidden' value="{{csrf_token()}}"/>
                                 <button class='btn btn-success pull-right'>OK</button>
                             </form>
@@ -20,10 +20,11 @@
 </div>
 @endsection
 @section('footerScripts')
-<script type="text/javascript" src="/custom/views/empresas/empresas.js"></script>
+<script type="text/javascript" src="/custom/controller/Categories.js"></script>
+<script type="text/javascript" src="/custom/views/categorias/background.js"></script>
 <script>
-    let empresa=new Empresas();
-    let target=document.querySelector('.empresaForm');
-    empresa.printForm('/json/Empresa.Form.json',target);
+    let background=new Background("/json/background.Form.json");
+    let target=document.querySelector('.backgroundForm');
+    background.print(target);
 </script>
 @endsection

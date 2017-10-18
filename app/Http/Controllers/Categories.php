@@ -130,4 +130,8 @@ class Categories extends Controller
         $category=new Category();
         return $category->getTopCategories($placeID);
     }
+    public function saveBackground(Request $request){
+        $category=new Category();
+        return $category->setBackground($request->name,$request->file);
+    }
 }

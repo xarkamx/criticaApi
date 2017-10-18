@@ -14,14 +14,11 @@
             }
         }  
     },
-    "Representantes": {
-        "fa": "fa-users",
+    "Categorias": {
+        "fa": "fa-bookmark",
         "childs": {
-            "Ver Representantes": {
-                "url": "/empresas/vista"
-            },
-            "Crear Representante": {
-                "url": "/empresas/add"
+            "Background": {
+                "url": "/categorias/background"
             }
         }
     },

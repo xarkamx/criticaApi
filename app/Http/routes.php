@@ -18,18 +18,10 @@ Route::group(['prefix'=>'home',"middleware"=>'admin'],function(){
         return view('home.home');
     });
 });
-Route::group(['prefix'=>'clientes',"middleware"=>'admin'],function(){
-    Route::get('/vista',function (){
-        return view('clientes.vista');
+Route::group(['prefix'=>'categorias',"middleware"=>'admin'],function(){
+    Route::get('/background',function (){
+        return view('Categories.background');
     });
-    Route::get('add/',function(){
-          return View::make('clientes.add')->with(["id"=>""]); 
-    });
-    Route::get('add/{id}',function($id){
-          return View::make('clientes.add')->with(["id"=>"$id"]); 
-    });
-    
-    
 });
 Route::group(['prefix'=>'usuarios',"middleware"=>'admin'],function(){
     Route::get('vista',function (){
@@ -53,10 +45,6 @@ Route::group(['prefix'=>'api'],function(){
     Route::get("/users/current","Users@currentUser");
     Route::post("/users/all/{id?}","Users@set");
     Route::delete("/users/{id?}","Users@delete");
-    
-    Route::get("/empresas/all/{id?}","Empresas@index");
-    Route::post("/empresas/all/{id?}","Empresas@set");
-    Route::delete("/empresas","Empresas@delete");
 
     Route::get("/places/","Places@getPlaces");
     Route::get("/places/country/{country?}","Places@codes");
@@ -83,6 +71,7 @@ Route::group(['prefix'=>'api'],function(){
     Route::get("/categories/{placeID}/wp/update","Categories@updateWpCategories");
     Route::get("/categories/{placeID?}","Categories@getCategories");
     Route::get("/categories/{placeID}/top","Categories@getTopCategories");
+    Route::post("/categories/background","Categories@saveBackground");
     
     Route::get("/widgets/gasolineras/","Widgets@getGasolinerasFromSource");
     Route::get("/widgets/gasolineras/update","Widgets@saveGasolinerasFromSource");

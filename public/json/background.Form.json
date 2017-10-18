@@ -1,0 +1,14 @@
+{
+    "categorias": {
+        "name": "categoria",
+        "className": "form-control",
+        "type": "select",
+        "label": "Categorias"
+    },
+    "background": {
+        "name": "background",
+        "className": "form-control",
+        "type": "file",
+        "label": "background"
+    }
+}

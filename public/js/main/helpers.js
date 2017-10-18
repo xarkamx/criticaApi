@@ -86,7 +86,7 @@ class Helpers {
     fileToImage(file, dom) {
         return this.fileTo64(file).then((ev) => {
             let img = document.createElement('img');
-            img.src = ev.currentTarget.result;
+            img.src = ev.explicitOriginalTarget.result;
             return new Promise((load, reject) => {
                 let data = {
                     img,

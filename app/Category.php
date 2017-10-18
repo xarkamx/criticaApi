@@ -73,4 +73,10 @@ class Category extends Model
             where placeId='$placeID' and wpId='$categoryID'";
         return \DB::select($sql);
     }
+    public function setBackground($name,$file){
+        $tools=new Tools();
+        $path=dirname(__DIR__)."/public/uploads/archivos/categoriasBg";
+        $ruta=$tools->b64toFile("$path",$file,$name,'jpg');
+        return $ruta;
+    }
 }
