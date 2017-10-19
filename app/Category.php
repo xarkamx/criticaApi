@@ -76,6 +76,7 @@ class Category extends Model
     public function setBackground($name,$file){
         $tools=new Tools();
         $path=dirname(__DIR__)."/public/uploads/archivos/categoriasBg";
+        $name=str_replace("/","-",$name);
         $ruta=$tools->b64toFile("$path",$file,$name,'jpg');
         return $ruta;
     }
