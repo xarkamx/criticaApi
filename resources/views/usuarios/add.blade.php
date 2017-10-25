@@ -10,7 +10,7 @@
                             <h1>Usuarios</h1>
                         </div>
                         <div class='panel-body'>
-                            <form class='col-sm-8 col-md-offset-2 panel' action='/api/users' method='post' data-id="{{$id}}">
+                            <form class='col-sm-8 col-md-offset-2 panel' action='/api/users/all' method='post' data-id="{{$id}}">
                                 <div class='userForm'></div>
                                 <input type="text" name="_token" class='hidden' value="{{csrf_token()}}"/>
                                 <button class='btn btn-success pull-right'>OK</button>

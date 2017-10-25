@@ -12,7 +12,7 @@ class Welcome extends Controller
 {
     public function index(){
         if(Auth::check()){
-            return view('home.home');
+            return view('Posts.portadaSetter');
         }
         $users=new User();
         if(count($users->get())==0){

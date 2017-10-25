@@ -34,14 +34,7 @@
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
-                    <div class="dropdown profile-element">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"></strong>
-                             </span> <span class="text-muted text-xs block"> <b class="caret"></b></span> </span> </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="/admin/login">Logout</a></li>
-                            </ul>
-                    </div>
+                    
                     <div class="logo-element">
                         IN+
                     </div>
@@ -80,11 +73,7 @@
                         </li>
                     </ul>
                 </li>
-                    <li>
-                        <a href="/admin/login">
-                            <i class="fa fa-sign-out"></i> Log out
-                        </a>
-                    </li>
+                   
                 </ul>
 
             </nav>

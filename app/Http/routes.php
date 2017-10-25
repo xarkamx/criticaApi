@@ -15,7 +15,7 @@ Route::get('/', "Welcome@index");
 Route::post('/login', "Users@login");
 Route::group(['prefix'=>'home',"middleware"=>'admin'],function(){
     Route::get('/',function (){
-        return view('home.home');
+        return view('Posts.portadaSetter');
     });
 });
 Route::group(['prefix'=>'categorias',"middleware"=>'admin'],function(){
