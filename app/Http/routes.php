@@ -82,6 +82,7 @@ Route::group(['prefix'=>'api'],function(){
     
     Route::get('/media/wp/{placeID}',"Multimedia@update");
     Route::get('/media/videos/{placeID}',"Multimedia@videos");
+    Route::get('/media/pdf/{placeID}',"Multimedia@pdf");
     
     Route::post('reporte',"reporteCiudadano@upload");
     

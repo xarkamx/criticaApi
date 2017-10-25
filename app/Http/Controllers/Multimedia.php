@@ -13,11 +13,22 @@ class Multimedia extends Controller
     function update(Request $request){
         $media=new Media();
         $placeID=$request->placeID;
-        $videos=$media->saveVideos($placeID);
+        $type=$request->type;
+        $media=$media->saveMedia($placeID,$type);
+    }
+    function updatePDF(Request $request){
+        $media=new Media();
+        $placeID=$request->placeID;
+        $pdf=$media->savePdf($placeID);
     }
     function videos(Request $request){
         $media=new Media();
         $placeID=$request->placeID;
         return $media->getVideos($placeID);
+    }
+    function pdf(Request $request){
+        $media=new Media();
+        $placeID=$request->placeID;
+        return $media->getPDF($placeID);
     }
 }

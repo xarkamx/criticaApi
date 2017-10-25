@@ -39,11 +39,9 @@ class Place extends Model
         $response=json_decode(curl_exec($curl));
         curl_close($curl);
         if(!isset($response->results)){
-            return [false];
+            return [fslse];
         }
-        if (!isset($response->results)){
-            return [0];
-        }
+        \Log::info(json_encode($response));
         $placeData=$tools->searchInAssocArray($response->results[0]->address_components,
         "types",
         "administrative_area_level_1");

@@ -16,6 +16,7 @@ class Media extends Migration
             $table->increments('id');
             $table->text('path');
             $table->text('title');
+            $table->text('type');
             $table->text('placeID');
             $table->text('postID');
             $table->text('wpID');
