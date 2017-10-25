@@ -41,6 +41,9 @@ class Place extends Model
         if(!isset($response->results)){
             return [false];
         }
+        if (!isset($response->results)){
+            return [0];
+        }
         $placeData=$tools->searchInAssocArray($response->results[0]->address_components,
         "types",
         "administrative_area_level_1");
