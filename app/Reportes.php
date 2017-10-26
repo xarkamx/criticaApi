@@ -11,6 +11,7 @@ class Reportes extends Model
     public function uploadData(Array $data){
         $tools=new Tools();
         $data['imagen']=$this->uploadImage($data);
+        $this->mail($data);
         return [$tools->saveByModel($this,$data)];
     }
     private function uploadImage($data){
@@ -25,5 +26,15 @@ class Reportes extends Model
         fwrite($file,base64_decode($data['imagen']));
         fclose($file);
         return "/uploads/archivos/$correo/".$fileName;
+    }
+    function mail($data){
+        $para      = 'contacto@grupomexicopublica.com.mx';
+        $titulo    = 'Reporte ciudadano';
+        $mensaje   = $data['descripcion']."\n".$data['imagen'];
+        $cabeceras = 'From: '.$data['correo']. "\r\n" .
+            'Reply-To:'.$data['correo']. "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+        
+        mail($para, $titulo, $mensaje, $cabeceras);
     }
 }
