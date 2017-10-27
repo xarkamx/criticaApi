@@ -14,9 +14,14 @@ class Background{
         let cat=new Categories();
         let select=dom.querySelector('.categoria select');
         cat.getAll().then((ev)=>{
+            let checker={};
             for(let index in ev){
                 let item=ev[index];
                 let option=document.createElement('option');
+                if(checker[item.category]!=undefined){
+                    continue;
+                }
+                checker[item.category]=true;
                 option.innerHTML=item.category;
                 option.value=item.category;
                 select.add(option);
