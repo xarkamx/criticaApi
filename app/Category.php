@@ -46,7 +46,6 @@ class Category extends Model
     ['Nacional',
     'Local',
     'Internacional',
-    'Impresa',
     'Finanzas/Empresas',
     'Ciencia',
     'Cultura',
