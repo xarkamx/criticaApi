@@ -19,6 +19,7 @@ class Media extends Migration
             $table->text('type');
             $table->text('placeID');
             $table->text('postID');
+            $table->text('thumb');
             $table->text('wpID');
             $table->timestamps();
         });

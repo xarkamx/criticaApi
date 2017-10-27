@@ -8,13 +8,23 @@ use App\Http\Requests;
 
 use App\Media;
 
+use App\Bitacora;
+
 class Multimedia extends Controller
 {
     function update(Request $request){
         $media=new Media();
         $placeID=$request->placeID;
         $type=$request->type;
-        $media=$media->saveMedia($placeID,$type);
+        $bitacora=new Bitacora();
+        if($bitacora->isCoolDownOver(5,"update $type",$placeID)){
+            $bitacora->setEvent("update Media",$placeID);
+            return $media->saveMedia($placeID,$type);
+        }
+          return [
+                "response"=>false,
+                "Error"=>"is not ready"
+            ];
     }
     function updatePDF(Request $request){
         $media=new Media();

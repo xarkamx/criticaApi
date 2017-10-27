@@ -25,22 +25,31 @@ class Media extends Model
         $tools=new Tools();
         $place = new Place();
         $location=$place->getPlaceByID($placeID);
-        $date="2016-01-01"."T00:00:00";
+        date_default_timezone_set("America/Mexico_City");
+        $latest=$this->select("created_at")->where("placeID",$placeID)
+            ->orderBy("created_at","desc")->get();
+        $date=(count($latest)>0)?preg_replace("/ /","T",$latest[0]['date']):
+            date("Y-m-d")."T00:00:00";
         $multimedia=$this->getMediaFromWP($location[0]->url,$date,$type);
         $data=[];
-        if(count($multimedia)<=0){
+        if(gettype($multimedia)=="string"){
             return [false];
         }
         foreach($multimedia as $key=>$media){
             $data[$key]['title']=$media['title']['rendered'];
             $data[$key]['path']=$media['source_url'];
             $data[$key]['wpID']=$media['id'];
+            if(isset($media['media_details']['sizes'])&&
+            count($media['media_details']['sizes'])>0){
+                $data[$key]['thumb']=$media['media_details']['sizes']['full']['source_url'];
+            }
             $data[$key]['placeID']=$placeID;
             $data[$key]['postID']=$media['post'];
             $data[$key]['type']=$type;
             $data[$key]['created_at']=date('Y-m-d H:i:s');
             $data[$key]['updated_at']=date('Y-m-d H:i:s');
         }
+        
         return $tools->massiveBulk('Media',$data);
     }
     function getVideos($placeID){
