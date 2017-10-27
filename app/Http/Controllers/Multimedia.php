@@ -18,7 +18,7 @@ class Multimedia extends Controller
         $type=$request->type;
         $bitacora=new Bitacora();
         if($bitacora->isCoolDownOver(5,"update $type",$placeID)){
-            $bitacora->setEvent("update Media",$placeID);
+            $bitacora->setEvent("update $type",$placeID);
             return $media->saveMedia($placeID,$type);
         }
           return [
