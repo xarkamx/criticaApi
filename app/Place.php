@@ -32,7 +32,7 @@ class Place extends Model
         if($lat=="undefined"){
             return  false;    
         }
-        $params="?latlng=$lat,$long";
+        $params="?latlng=$lat,$long&key=AIzaSyAdo1d1p65Ok_tFJ9pI_i7afY9NWnHNX9Q";
        
         $curl = curl_init($googleMap.$params);
         curl_setopt ($curl ,CURLOPT_RETURNTRANSFER,1);
