@@ -59,7 +59,7 @@ class Media extends Model
         return \DB::select($sql);
     }
     function getPDF($placeID){
-        $sql="SELECT * FROM `Media` where type='pdf' order by wpID and placeID=$placeID";
+        $sql="SELECT * FROM `Media` where type='pdf' and thumb is not null and thumb!='' and placeID=$placeID order by wpID ";
         return \DB::select($sql);
     }
     private function getQueryByType($type){
