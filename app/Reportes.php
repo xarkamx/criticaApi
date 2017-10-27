@@ -18,6 +18,7 @@ class Reportes extends Model
         $correo=$data['correo'];
         $fileName=md5($correo.date('ymdhis'));
         $path=dirname(__DIR__)."/public/uploads/archivos/";
+        $correo=preg_replace("/@/",'_',$correo);
         if (!file_exists($path.$correo)) {
             mkdir($path.$correo, 0775, true);
         }
@@ -25,12 +26,13 @@ class Reportes extends Model
         $file=fopen($path,"w");
         fwrite($file,base64_decode($data['imagen']));
         fclose($file);
-        return "/uploads/archivos/$correo/".$fileName;
+        return "/uploads/archivos/$correo/".$fileName.".jpg";
     }
     function mail($data){
-        $para      = 'contacto@grupomexicopublica.com.mx';
+        $para      = 'albertogmx91@gmail.com';
         $titulo    = 'Reporte ciudadano';
-        $mensaje   = $data['descripcion']."\n".$data['imagen'];
+        $imagen="http://" . $_SERVER['SERVER_NAME'] ."/".$data['imagen'];
+        $mensaje   = $data['descripcion']."\n".$imagen;
         $cabeceras = 'From: '.$data['correo']. "\r\n" .
             'Reply-To:'.$data['correo']. "\r\n" .
             'X-Mailer: PHP/' . phpversion();
