@@ -28,7 +28,7 @@ class Media extends Model
         date_default_timezone_set("America/Mexico_City");
         $latest=$this->select("created_at")->where("placeID",$placeID)
             ->orderBy("created_at","desc")->get();
-        $date=(count($latest)>0)?preg_replace("/ /","T",$latest[0]['date']):
+        $date=(count($latest)>0)?preg_replace("/ /","T",$latest[0]['created_at']):
             date("Y-m-d")."T00:00:00";
         $multimedia=$this->getMediaFromWP($location[0]->url,$date,$type);
         $data=[];
