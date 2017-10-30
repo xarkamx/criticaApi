@@ -41,7 +41,7 @@ class Place extends Model
         if(!isset($response->results)){
             return [false];
         }
-        \Log::info(json_encode($response));
+        
         $placeData=$tools->searchInAssocArray($response->results[0]->address_components,
         "types",
         "administrative_area_level_1");

@@ -97,9 +97,10 @@ Route::group(['prefix'=>'api'],function(){
     Route::get('/media/wp/{placeID}',"Multimedia@update");
     Route::get('/media/videos/{placeID}',"Multimedia@videos");
     Route::get('/media/pdf/{placeID}',"Multimedia@pdf");
+    Route::get('/media/impresos','Multimedia@impresos');
+    Route::post('/media/impresos','Multimedia@saveImpreso');
     
     Route::post('reporte',"reporteCiudadano@upload");
-    
     Route::get('/bitacora',"Bitacoras@index");
     
 });
@@ -118,5 +119,8 @@ Route::group(["prefix"=>"posts","middleware"=>'admin'],function(){
     });
     Route::get('/notifications',function (){
         return view('test.notifications');
+    });
+    Route::get('/impresos',function (){
+        return view('impresos.add');
     });
 });

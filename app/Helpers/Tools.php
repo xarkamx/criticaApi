@@ -258,20 +258,22 @@ class Tools
         $html.='</from></div>';
         return $html;
     }//convierte un arreglo en formulario
-    public function fileToPath($files,$name=''){
+    public function fileToPath($path,$files,$name=''){
         $plugin_path=dirname(__DIR__);
-        if(!is_dir($plugin_path."/upload")){
-            mkdir($plugin_path."/upload");
+        if(!is_dir($path)){
+            mkdir($path);
         }
-        foreach ( $files as $file) {
-        if ($file["error"] == UPLOAD_ERR_OK) {
-            $tmp_name = $file["tmp_name"];
-            pathinfo($file["name"], PATHINFO_EXTENSION);
-            $name = ($name=='')?$file["name"]:$name.".zip";
-            return (move_uploaded_file($tmp_name, $plugin_path."/upload/$name"))?"$name":'El archivo no se copio correctamente.';
+        $result=[];
+        foreach ( $files['name'] as $key=>$file) {
+        if ($files["error"][$key] == UPLOAD_ERR_OK) {
+            $tmp_name = $files["tmp_name"][$key];
+            pathinfo($files["name"][$key], PATHINFO_EXTENSION);
+            $name = $files["name"][$key];
+            $result[]= (move_uploaded_file($tmp_name, "$path/$name"))?"$name":'El archivo no se copio correctamente.';
         }
-            return "something when wrong";
+           
     }
+     return $result;
     }
     public function find_repeat_on_matrix($args,$colum){
         $repeat=array();
@@ -415,5 +417,18 @@ class Tools
         $json  = json_encode($ob);
         $configData = json_decode($json, true);
         return $configData;
+    }
+    public function foldersToJson($path){
+        $files=scandir($path);
+        $data=[];
+        foreach($files as $file){
+            if(is_dir($path.$file) && ($file!="."&&$file!="..")){
+                $data[$file]=$this->foldersToJson($path.$file);
+            }
+            if(!is_dir($path.$file) && ($file!="."&&$file!="..")){
+                $data[]=$file;
+            }
+        }
+        return $data;
     }
 }

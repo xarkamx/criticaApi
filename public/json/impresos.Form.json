@@ -1,0 +1,15 @@
+{
+    "titulo": {
+        "name": "folderName",
+        "className": "form-control",
+        "type": "number",
+        "label": "Numero Edición"
+    },
+    "Files": {
+        "name": "files[]",
+        "className": "form-control",
+        "type": "file",
+        "multiple": true,
+        "label": "Páginas"
+    }
+}

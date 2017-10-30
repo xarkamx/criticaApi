@@ -41,4 +41,16 @@ class Multimedia extends Controller
         $placeID=$request->placeID;
         return $media->getPDF($placeID);
     }
+    function saveImpreso(Request $request){
+        $data=$request->toArray();
+        dd($_FILES);
+        $media=new Media();
+        $media->addImpresos($data);
+        return ["upload"];
+    }
+    function impresos(Request $request){
+        $data=$request->toArray();
+        $media=new Media();
+        return $media->getImpresos();
+    }
 }

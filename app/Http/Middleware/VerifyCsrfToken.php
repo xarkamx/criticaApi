@@ -14,6 +14,7 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         "api/voiceReader",
         "api/reporte",
-        "api/places"
+        "api/places",
+        "api/media/impresos"
     ];
 }

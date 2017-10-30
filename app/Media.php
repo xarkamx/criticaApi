@@ -62,6 +62,18 @@ class Media extends Model
         $sql="SELECT * FROM `Media` where type='pdf' and thumb is not null and thumb!='' and placeID=$placeID order by wpID ";
         return \DB::select($sql);
     }
+    function addImpresos($data){
+        $tools=new Tools();
+        dd($data);
+        $tools->fileToPath($_SERVER['DOCUMENT_ROOT']."/public/uploads/impreso/edicion$data[folderName]",$_FILES['files']);
+    }
+    function getImpresos(){
+        $tools=new Tools();
+        $path=$_SERVER['DOCUMENT_ROOT']."/public/uploads/impreso/";
+        if(is_dir($path)){
+            return $tools->foldersToJson($path);
+        }
+    }
     private function getQueryByType($type){
         $response="";
         switch ($type) {
