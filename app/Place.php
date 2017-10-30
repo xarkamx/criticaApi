@@ -10,7 +10,7 @@ class Place extends Model
     protected $table="places";
     public function saveModel(Array $data){
         $tools=new Tools();
-        return $tools->saveByModel($this,$data,null,"url",$data['url']);
+        return [$tools->saveByModel($this,$data,null,"url",$data['url'])];
     }
     public function getPlaces($country=''){
         if($country==''){
@@ -39,7 +39,7 @@ class Place extends Model
         $response=json_decode(curl_exec($curl));
         curl_close($curl);
         if(!isset($response->results)){
-            return [fslse];
+            return [false];
         }
         \Log::info(json_encode($response));
         $placeData=$tools->searchInAssocArray($response->results[0]->address_components,
@@ -61,5 +61,12 @@ class Place extends Model
            return (count($id)>0)?$id[0]:false;
         }
         return false;
+    }
+    public function updatePlace(Array $data){
+        $tools=new Tools();
+        $column=$data["column"];
+        $value=$data["value"];
+        $id=$data["id"];
+        return \DB::select("update places set $column='$value' where id='$id'");
     }
 }

@@ -22,6 +22,17 @@
             }
         }
     },
+    "Lugares":{
+        "fa": "fa-user-circle",
+        "childs": {
+            "Ver": {
+                "url": "/places/vista"
+            },
+            "Agregar": {
+                "url": "/places/add"
+            }
+        }
+    },
     "Usuarios": {
         "fa": "fa-user-circle",
         "childs": {

@@ -2,6 +2,7 @@ class Menu{
     constructor(path=''){
         this.tools=new Tools();
         if(path!=null||path!=''){
+            localStorage.clear();
             this.menu=this.tools.ajax.import(path);
         }
     }

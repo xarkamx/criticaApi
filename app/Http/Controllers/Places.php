@@ -108,4 +108,18 @@ class Places extends Controller
         $place=new Place();
         return $place->getPlaces();
     }
+    function  savePlaces(Request $request){
+        $place=new Place();
+        $data=$request->toArray();
+        $data["country"]=strtoupper($data["country"]);
+        unset($data['_token']);
+        return $place->saveModel($data);
+    }
+    function updatePlaces(Request $request){
+        $place=new Place();
+        $data= $request->toArray();
+        unset($data["_method"]);
+        return $place->updatePlace($data);
+        
+    }
 }

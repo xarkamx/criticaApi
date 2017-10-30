@@ -17,6 +17,7 @@ class Places extends Migration
             $table->text('country');
             $table->text('place');
             $table->text('twitter');
+            $table->text('alias');
             $table->text('url');
             $table->timestamps();
         });

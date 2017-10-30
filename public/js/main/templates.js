@@ -44,7 +44,7 @@ class Templates extends Ajax {
         return dom;
     }
     fillDom(dom, key, value, sp) {
-        if (sp[key] != undefined) {
+        if (sp[key] != undefined && typeof sp[key] == "function") {
             return sp[key](dom, value);
         }
         if (this[dom.tagName] == undefined) {
@@ -57,38 +57,38 @@ class Templates extends Ajax {
         }
     }
     validDomChild(dom, key) {
-            let doms = dom.querySelectorAll('.' + key) ||
-                dom.querySelectorAll('#' + key) ||
-                dom.querySelectorAll("input['name=" + key + "']");
-            return (doms.length > 0) ? doms : false;
-        }
-        /**
-         *@param {object} json 
-         *@param {DOM} targetNode
-         */
+        let doms = dom.querySelectorAll('.' + key) ||
+            dom.querySelectorAll('#' + key) ||
+            dom.querySelectorAll("input['name=" + key + "']");
+        return (doms.length > 0) ? doms : false;
+    }
+    /**
+     *@param {object} json 
+     *@param {DOM} targetNode
+     */
     printForm(json, tn, specialEvents = {}) {
-            if (typeof json != 'object') {
-                json = JSON.parse(json);
-            }
-            for (let pos in json) {
-                let item = json[pos];
-                let parent = document.createElement('div');
-                let label = document.createElement('label');
-                parent.classList.add("form-group");
-                parent.classList.add(item.name);
-                label.innerHTML = item.label;
-                parent.appendChild(label);
-                parent.appendChild(this.setInput(item));
-                if (specialEvents[pos] != undefined) {
-                    specialEvents[pos](parent);
-                }
-                tn.appendChild(parent);
-            }
+        if (typeof json != 'object') {
+            json = JSON.parse(json);
         }
-        /**
-         *@param {object} data 
-         *@param {DOM} targetNode
-         */
+        for (let pos in json) {
+            let item = json[pos];
+            let parent = document.createElement('div');
+            let label = document.createElement('label');
+            parent.classList.add("form-group");
+            parent.classList.add(item.name);
+            label.innerHTML = item.label;
+            parent.appendChild(label);
+            parent.appendChild(this.setInput(item));
+            if (specialEvents[pos] != undefined) {
+                specialEvents[pos](parent);
+            }
+            tn.appendChild(parent);
+        }
+    }
+    /**
+     *@param {object} data 
+     *@param {DOM} targetNode
+     */
     fillForm(data, form, sp = {}) {
         if (typeof data != 'object') {
             data = JSON.parse(data);

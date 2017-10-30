@@ -11,61 +11,62 @@ class Ajax extends Helpers {
     }
 
     simple_cURL(args) {
-            if (!navigator.onLine) {
-                return this.onFail('No internet');
-            }
-            var xmlhttp = this.ajaxConnect();
-            var response = '';
-            args = this.onStart(args);
-            if (args.callback != undefined || args.callback != null) {
-                this.onEnd = args.callback;
-            }
-            xmlhttp.onreadystatechange = (ev) => {
-                this.onLoad(xmlhttp);
-                if (xmlhttp.status >= 400 && xmlhttp.readyState == 4) {
-                    this.onFail(xmlhttp);
-                }
-                else if (xmlhttp.readyState == 4) {
-                    this.data = this.onEnd(xmlhttp.response);
-                }
-            }
-            xmlhttp.open(args.method, args.url, args.asinc);
-            for (let index in args.header) {
-                let header = args.header[index];
-                xmlhttp.setRequestHeader(index,header);
-            }
-            xmlhttp.send(args.parameters);
-            return this.data;
+        if (!navigator.onLine) {
+            return this.onFail('No internet');
         }
-        /**
-         * @param path, {object} parameters,{function} response, method,asinc */
+        var xmlhttp = this.ajaxConnect();
+        var response = '';
+        args = this.onStart(args);
+        if (args.callback != undefined || args.callback != null) {
+            this.onEnd = args.callback;
+        }
+        xmlhttp.onreadystatechange = (ev) => {
+            this.onLoad(xmlhttp);
+            if (xmlhttp.status >= 400 && xmlhttp.readyState == 4) {
+                this.onFail(xmlhttp);
+            }
+            else if (xmlhttp.readyState == 4) {
+                this.data = this.onEnd(xmlhttp.response);
+            }
+        }
+        xmlhttp.open(args.method, args.url, args.asinc);
+        for (let index in args.header) {
+            let header = args.header[index];
+            xmlhttp.setRequestHeader(index, header);
+        }
+        xmlhttp.send(args.parameters);
+        return this.data;
+    }
+    /**
+     * @param path, {object} parameters,{function} response, method,asinc */
     postData(path = {}, parameters = {}, response = null, method = "GET",
-            asinc = true, header = {
-                "Content-type": "application/x-www-form-urlencoded"
-            }) {
-            
-            if(header['Content-Type']=="application/json"){
-                parameters=JSON.stringify(parameters);
-            }else{
-                parameters = this.objectToSerialize(parameters);
-                if (method.toLowerCase() == 'get') {
-                    path += '?' + parameters;
-                    parameters = '';
-                }
-            }
-            let args = {
-                method,
-                url: path,
-                header,
-                asinc,
-                parameters: parameters,
-                callback: response,
-            };
-            let result = this.simple_cURL(args);
-            return result;
+        asinc = true, header = {
+            "Content-type": "application/x-www-form-urlencoded"
+        }) {
+
+        if (header['Content-Type'] == "application/json") {
+            parameters = JSON.stringify(parameters);
         }
-        /**
-         * @param path */
+        else {
+            parameters = this.objectToSerialize(parameters);
+            if (method.toLowerCase() == 'get') {
+                path += '?' + parameters;
+                parameters = '';
+            }
+        }
+        let args = {
+            method,
+            url: path,
+            header,
+            asinc,
+            parameters: parameters,
+            callback: response,
+        };
+        let result = this.simple_cURL(args);
+        return result;
+    }
+    /**
+     * @param path */
     import (path) {
         let content = ''
         if (localStorage.getItem(path) == null) {
@@ -95,24 +96,24 @@ class Ajax extends Helpers {
     onFail(msg) {
         return this.error(msg);
     }
-     async fetchData(path,parameters={},method="get"){
-         parameters = this.objectToSerialize(parameters);
-            
-            let args={
-                headers: {'Content-Type':'application/x-www-form-urlencoded'}
-            }
-            if (method.toLowerCase() == 'get') {
-                path += '?' + parameters;
-                parameters = '';
-            }else{
-                args.body=parameters;
-            }
-            args.method=method;
-           
-            let data=await fetch(path,args);
-            
-            return await data.json();
-            
-            
+    async fetchData(path, parameters = {}, method = "get") {
+        parameters = this.objectToSerialize(parameters);
+
+        let args = {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }
+        if (method.toLowerCase() == 'get') {
+            path += '?' + parameters;
+            parameters = '';
+        }
+        else {
+            args.body = parameters;
+        }
+        args.method = method;
+        //debugger;
+        let data = await fetch(path, args);
+        return await data.json();
+
+
     }
 }

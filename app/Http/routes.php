@@ -35,6 +35,18 @@ Route::group(['prefix'=>'usuarios',"middleware"=>'admin'],function(){
         return view('usuarios.add')->with(["id"=>"$id"]);
     });
 });
+Route::group(['prefix'=>'places',"middleware"=>'admin'],function(){
+    Route::get('vista',function (){
+        return view('lugares.vista');
+    });
+    Route::get('add',function (){
+        return view('lugares.add')->with(["id"=>""]);
+    });
+    
+    Route::get('add/{id}',function ($id){
+        return view('usuarios.add')->with(["id"=>"$id"]);
+    });
+});
 Route::group(['prefix'=>'api'],function(){
     Route::get("/",function(){
         return Redirect::to('/apidoc');
@@ -49,6 +61,8 @@ Route::group(['prefix'=>'api'],function(){
     Route::get("/places/","Places@getPlaces");
     Route::get("/places/country/{country?}","Places@codes");
     Route::get("/places/loc","Places@location");
+    Route::post("/places/","Places@savePlaces");
+    Route::put("/places/","Places@updatePlaces");
     Route::post("/places/bulk","Places@setPlaces");
     
     Route::get("/posts/{postID?}","Posts@index");

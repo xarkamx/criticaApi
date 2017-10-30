@@ -1,0 +1,38 @@
+{
+    "country": {
+        "name": "country",
+        "maxLength": "3",
+        "placeholder": "(Acronimo Americano: Ejemplo USA)",
+        "className": "form-control",
+        "type": "text",
+        "label": "Pais"
+    },
+    "place": {
+        "name": "place",
+        "placeholder": "Nombre completo del estado",
+        "className": "form-control",
+        "type": "text",
+        "label": "Estado"
+    },
+    "url": {
+        "name": "url",
+        "placeholder": "Ruta Oficial de GMP para este estado",
+        "className": "form-control",
+        "type": "text",
+        "label": "URL"
+    },
+    "alias": {
+        "name": "alias",
+        "placeholder": "Nombre a desplegar para este estado (EJ:Critica Jalisco)",
+        "className": "form-control",
+        "type": "text",
+        "label": "Etiqueta"
+    },
+    "twitter": {
+        "name": "twitter",
+        "placeholder": "Cuenta de twitter",
+        "className": "form-control",
+        "type": "text",
+        "label": "Twitter"
+    }
+}
