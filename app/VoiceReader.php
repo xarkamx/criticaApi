@@ -15,7 +15,8 @@ class VoiceReader extends Model
         $args=array(
             "key"=>"66b52ecdb1aa4a0c8e14f7327db38b74",
             "hl"=>"es-mx",
-            "src"=>$text
+            "src"=>$text,
+            "f"=>"44khz_16bit_mono"
             );
         $path=dirname(__DIR__)."/public/uploads/archivos/$filename.mp3";
         if(file_exists($path)){
