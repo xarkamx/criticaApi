@@ -10,7 +10,7 @@
                             <h1>Impreso</h1>
                         </div>
                         <div class='panel-body'>
-                            <form class='col-sm-8 col-md-offset-2 panel' action='/api/media/impresos' enctype="multipart/form-data" method='post'>
+                            <form class='col-sm-8 col-md-offset-2 panel' action='/api/media/impresos'  method='post'>
                                 <div class='backgroundForm'></div>
                                 <input type="text" name="_token" class='hidden' value="{{csrf_token()}}"/>
                                 <button class='btn btn-success pull-right'>OK</button>
@@ -20,6 +20,8 @@
 </div>
 @endsection
 @section('footerScripts')
+<script type="text/javascript" src="/custom/controller/Places.js"></script>
+<script type="text/javascript" src="/custom/controller/Impresos.js"></script>
 <script type="text/javascript" src="/custom/views/posts/impreso.js"></script>
 <script>
     let impresos=new Impreso();

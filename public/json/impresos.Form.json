@@ -1,12 +1,18 @@
 {
+    "places": {
+        "name": "place",
+        "className": "form-control",
+        "type": "select",
+        "label": "Estado"
+    },
     "titulo": {
         "name": "folderName",
         "className": "form-control",
-        "type": "number",
+        "type": "text",
         "label": "Numero Edición"
     },
     "Files": {
-        "name": "files[]",
+        "name": "files",
         "className": "form-control",
         "type": "file",
         "multiple": true,

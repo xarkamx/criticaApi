@@ -423,9 +423,11 @@ class Tools
         $data=[];
         foreach($files as $file){
             if(is_dir($path.$file) && ($file!="."&&$file!="..")){
-                $data[$file]=$this->foldersToJson($path.$file);
+                $npath=$path.$file."/";
+                $data[$file]=$this->foldersToJson($npath);
             }
             if(!is_dir($path.$file) && ($file!="."&&$file!="..")){
+                
                 $data[]=$file;
             }
         }

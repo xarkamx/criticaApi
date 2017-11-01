@@ -64,14 +64,16 @@ class Media extends Model
     }
     function addImpresos($data){
         $tools=new Tools();
-        dd($data);
-        $tools->fileToPath($_SERVER['DOCUMENT_ROOT']."/public/uploads/impreso/edicion$data[folderName]",$_FILES['files']);
+        $path=$_SERVER['DOCUMENT_ROOT']."/public/uploads/impreso/".$data['place']."/edicion".$data['folder'];
+        $name=preg_split("/\./",$data['name']);
+        return $tools->b64toFile($path,$data['b64'],$name[0],"jpg");
     }
-    function getImpresos(){
+    function getImpresos($place){
         $tools=new Tools();
         $path=$_SERVER['DOCUMENT_ROOT']."/public/uploads/impreso/";
         if(is_dir($path)){
-            return $tools->foldersToJson($path);
+            $json=$tools->foldersToJson($path);
+            return ($place==null)?$tools->foldersToJson($path):$tools->foldersToJson($path)[$place];
         }
     }
     private function getQueryByType($type){
