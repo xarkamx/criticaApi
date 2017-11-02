@@ -112,6 +112,7 @@ class Ajax extends Helpers {
         args.method = method;
         //debugger;
         let data = await fetch(path, args);
+
         return await data.json();
 
 

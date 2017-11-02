@@ -24,6 +24,7 @@ class Impreso {
                 let file = inputs.files[index];
                 impresos.upload(inputs.folderName, file, place).then((ev) => {
                     ++counter;
+
                     let status = Math.floor((counter / inputs.files.length) * 100)
                     porcentaje.innerHTML = "Cargando Archivos " + status + "%";
                     if (status == 100) {
