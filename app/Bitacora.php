@@ -16,6 +16,7 @@ class Bitacora extends Model
             ])->orderBy('id','desc')->limit(0,1)->get();        
     }
     function setEvent($event,$placeID,$type="system",$id=0){
+        date_default_timezone_set("America/Mexico_City");
         $tools=new Tools();
         return $tools->saveByModel($this,[
             "evento"=>$event,
