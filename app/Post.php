@@ -25,10 +25,6 @@ class Post extends Model{
         if(!isset($data[0])){
             $data=[$data];
         }
-        if(!isset($data[0]['_embedded'])){
-            return ['Error'=>"undefined post"];
-        }
-        
         foreach($data as $key=>$item){
             if(!isset($item['_embedded']['wp:featuredmedia'])){
                 $item['_embedded']['wp:featuredmedia'][0]['source_url']="https://www.criticajalisco.com/wp-content/themes/critica2/img/logos/critica.png";
