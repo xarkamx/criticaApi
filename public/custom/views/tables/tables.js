@@ -1,10 +1,11 @@
 class Tables extends Tools {
     createTable(path, table, specialEvents = {}) {
+        debugger;
         let pn = table.querySelector("tbody");
         let tn = pn.querySelector("tr");
         this.ajax.postData(path, {}, (ev) => {
             this.data = JSON.parse(ev);
-            this.fillTable(ev, tn, pn, specialEvents);
+            this.fillTable(table, ev, tn, pn, specialEvents);
         });
     }
     fillTable(table, json, tn, pn, specialEvents) {
