@@ -8,7 +8,7 @@ use App\Helpers\Tools;
 class Post extends Model{
     protected $table="posts";
     public function __construct(){
-        $this->wpApi="/wp-json/wp/v2/posts";
+        $this->wpApi="wp-json/wp/v2/posts";
     }
     public function getPostFromUrl($url,$postID=""){
         $tools=new Tools();
@@ -22,9 +22,13 @@ class Post extends Model{
             date("Y-m-d")."T00:00:00";
         $data=$this->getPostFromUrl($url,$postID."?_embed&per_page=100&after=$date");
         $posts=[];
-        if(!isset($data[0])){
+        if(count($data)<1){
+            return ["error"=>"no new Posts"];
+        }
+        if(gettype( $data)=="string"){
             $data=[$data];
         }
+        
         foreach($data as $key=>$item){
             if(!isset($item['_embedded']['wp:featuredmedia'])){
                 $item['_embedded']['wp:featuredmedia'][0]['source_url']="https://www.criticajalisco.com/wp-content/themes/critica2/img/logos/critica.png";
