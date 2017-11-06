@@ -3,16 +3,13 @@
         "url": "/home",
         "fa": "fa-home"
     },
-    "Post": {
+    "Contenido": {
         "fa": "fa-newspaper-o",
         "childs": {
-            "Ver Posts": {
-                "url": "/posts/vista"
-            },
-            "Organizar Post de Portada": {
+            "Portada": {
                 "url": "/posts/sorter"
             },
-            "Impresos": {
+            "Versión Impresa": {
                 "url": "/posts/impresos"
             }
         }
@@ -26,7 +23,7 @@
         }
     },
     "Lugares": {
-        "fa": "fa-user-circle",
+        "fa": "fa-map-marker",
         "childs": {
             "Ver": {
                 "url": "/places/vista"
