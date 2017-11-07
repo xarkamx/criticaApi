@@ -22,14 +22,16 @@ class Post extends Model{
             date("Y-m-d")."T00:00:00";
         $data=$this->getPostFromUrl($url,$postID."?_embed&per_page=100&after=$date");
         $posts=[];
-        if(count($data)<1){
-            return ["error"=>"no new Posts"];
-        }
         if(gettype( $data)=="string"){
             $data=[$data];
         }
-        
+        if(count($data)<1){
+            return ["error"=>"no new Posts"];
+        }
         foreach($data as $key=>$item){
+            if(!isset($item['_embedded'])){
+                continue;
+            }
             if(!isset($item['_embedded']['wp:featuredmedia'])){
                 $item['_embedded']['wp:featuredmedia'][0]['source_url']="https://www.criticajalisco.com/wp-content/themes/critica2/img/logos/critica.png";
             }
@@ -55,6 +57,9 @@ class Post extends Model{
             $posts[]=$post;
         }
         $tools=new Tools();
+        if(!isset($post)){
+            return ['no response'];
+        }
         $tools->massiveBulk('posts',$posts);
         return $this->getPost($placeID,$postID);
     }
@@ -111,9 +116,11 @@ class Post extends Model{
         if($postID!=null){
             return $this->where("place",$placeID)->orWhere('id',$postID)
             ->orderBy('date','desc')
+            ->take(270)
             ->get();
         }elseif($placeID!=null){
             return $this->where("place",$placeID)
+            ->take(270)
             ->orderBy('date','desc')
             ->get();    
         }else{
