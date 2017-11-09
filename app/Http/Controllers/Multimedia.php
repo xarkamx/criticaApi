@@ -48,6 +48,11 @@ class Multimedia extends Controller
     function impresos(Request $request){
         $data=$request->toArray();
         $media=new Media();
-        return $media->getImpresos($request->place);
+        return $media->getImpresos($request->toArray());
+    }
+    function deleteImpresos(Request $request){
+        $media=new Media();
+        $media->deleteImpresos($request->path);
+        return [is_dir($request->path) || is_file($request->path)];
     }
 }

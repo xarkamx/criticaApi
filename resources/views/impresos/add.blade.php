@@ -17,6 +17,23 @@
                             </form>
                         </div>
                     </div>
+                    <div class="panel panel-default fileList">
+                        <ul class="panel-body parent">
+                            <li class="child">
+                                <div class="hidden preview">
+                                    <img class="prevImage"/>
+                                </div>
+                                <div class="fileName" editable>FileName</div>
+                                <div class="open btn btn-default btn-sm">
+                                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                                </div>
+                                <div class="delete btn btn-danger btn-sm">
+                                    <i class="fa fa-window-close" aria-hidden="true"></i>
+                                </div>
+                                <ul class="content"></ul>
+                            </li>
+                        </ul>
+                    </div>
 </div>
 @endsection
 @section('footerScripts')

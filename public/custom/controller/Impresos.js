@@ -15,4 +15,17 @@ class Impresos {
         }, 'post');
         return data;
     }
+    async get(path = "/uploads/impreso/") {
+        path = encodeURIComponent(path);
+        console.log(path);
+        let tools = new Tools();
+        return tools.ajax.fetchData("/api/media/impresos", { path });
+    }
+    async delete(path, _token) {
+        let tools = new Tools();
+        return await tools.ajax.fetchData("/api/media/impresos", {
+            path,
+            _token
+        }, "delete");
+    }
 }

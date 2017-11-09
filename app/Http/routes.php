@@ -13,6 +13,7 @@
 
 Route::get('/', "Welcome@index");
 Route::post('/login', "Users@login");
+Route::get('/logout', "Users@logout");
 Route::group(['prefix'=>'home',"middleware"=>'admin'],function(){
     Route::get('/',function (){
         return view('Posts.portadaSetter');
@@ -99,6 +100,7 @@ Route::group(['prefix'=>'api'],function(){
     Route::get('/media/pdf/{placeID}',"Multimedia@pdf");
     Route::get('/media/impresos','Multimedia@impresos');
     Route::post('/media/impresos','Multimedia@saveImpreso');
+    Route::delete('/media/impresos','Multimedia@deleteImpresos');
     
     Route::post('reporte',"reporteCiudadano@upload");
     Route::get('/bitacora',"Bitacoras@index");

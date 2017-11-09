@@ -59,8 +59,8 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown fnoti">
-                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell"></i>  <span class="label label-primary unseen">0</span>
+                    <a href="/logout">
+                        <i class="fa fa-sign-out"></i>  <span class="label">Log out</span>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>

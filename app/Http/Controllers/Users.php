@@ -17,6 +17,10 @@ class Users extends Controller
         $user=new User();
         return [$user->login($request->toArray())];
     }
+    public function logout(){
+        \Auth::logout();
+        return redirect("/");
+    }
     public function index(Request $request){
         $users=new User();
         return $users->printUsers($request->by,$request->value);

@@ -72,12 +72,36 @@ class Media extends Model
         $type=preg_split("/-/",$data['type']);
         return $tools->b64toFile($path,$data['b64'],$name[0],$type[1]);
     }
-    function getImpresos($place){
+    function getImpresos($data){
         $tools=new Tools();
-        $path=$_SERVER['DOCUMENT_ROOT']."/public/uploads/impreso/";
+        $path=(!isset($data['path']))?"/uploads/impreso/":$data['path'];
+        $place=(!isset($data['place']))?null:$data['place'];
+        
+        if($path=="/"){
+            throw "invalid Path";
+        }
+        $path=$_SERVER['DOCUMENT_ROOT']."/public/".$path;
         if(is_dir($path)){
             $json=$tools->foldersToJson($path);
             return ($place==null)?$tools->foldersToJson($path):$tools->foldersToJson($path)[$place];
+        }
+    }
+    function deleteImpresos($path){
+        if($path=="/"){
+            throw "Invalid path";
+        }
+        $fullPath=$_SERVER['DOCUMENT_ROOT']."/public/".$path;
+        if(is_dir($fullPath)){
+            $files = array_diff(scandir($fullPath), array('.', '..'));
+            foreach ($files as $value) {
+                $this->deleteImpresos($path."/".$value);   
+            }
+            $files = array_diff(scandir($fullPath), array('.', '..'));
+            if(count($files)<=0){
+                rmdir($fullPath);
+            }
+        }else{
+            unlink($fullPath);
         }
     }
     private function getQueryByType($type){

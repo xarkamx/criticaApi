@@ -247,3 +247,48 @@
     font-size: 4vw;
     line-height: 9
 }
+
+.fileList li {
+    list-style: none;
+    margin: auto;
+}
+
+.fileList li>div {
+    display: inline-block;
+}
+
+.fileList {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.fileList .fileName {
+    width: 76%;
+    font-weight: bolder;
+    margin-left: 2%;
+    vertical-align: top;
+}
+
+.fileList .content {
+    width: 90%;
+    margin: 10px 0px 5px 0px;
+    border-left: solid 1px blue;
+    border-bottom: solid 1px blue;
+}
+
+.fileList .prevImage {
+    max-width: 60px;
+    max-height: 40px;
+    margin: auto;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.fileList .preview {
+    width: 10%;
+    height: 40px;
+    position: relative;
+}

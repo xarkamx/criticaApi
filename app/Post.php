@@ -139,18 +139,18 @@ class Post extends Model{
         return implode("and",$queries);
     }
     public function getPostByCategory($placeID,$categoryID){
-        $posts=$this->getPost($placeID);
+        $spliter='FIND_IN_SET("'.$categoryID.'",replace(replace(categories,"]",""),"[",""))>0';
+        $query="SELECT * FROM `posts` where $spliter and place='$placeID'
+            order by date desc";
+        $posts=\DB::select($query);
+        \Log::info($query);
         $postByCategory=[];
         foreach ($posts as $key=>$value) {
             $categories=json_decode($value->categories);
             if(in_array($categoryID,$categories)){
                 $postByCategory[]=$value;
-                if(count($postByCategory)>=30){
-                    break;
-                }
             }
         }
         return $postByCategory;
     }
-    
 }
