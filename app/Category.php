@@ -49,7 +49,6 @@ class Category extends Model
     'Finanzas/Empresas',
     'Ciencia',
     'Cultura',
-    'texto',
     'Deportes',
     'Entretenimiento',
     'Últimas noticias'
