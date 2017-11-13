@@ -51,7 +51,8 @@ class Category extends Model
     'Cultura',
     'Deportes',
     'Entretenimiento',
-    'Últimas noticias'
+    'Últimas noticias',
+    'texto'
     ]){
         $tools=new Tools();
         $categories=\DB::select("select * from categories where
