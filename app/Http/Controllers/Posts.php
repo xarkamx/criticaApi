@@ -269,8 +269,6 @@ class Posts extends Controller
             $categoryID
             );
          return $post->getPostByCategory($placeID,$categoryID);
-         
-         
     }
     /**
     *@api {get} api/posts/home

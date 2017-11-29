@@ -57,7 +57,12 @@ class Category extends Model
         $tools=new Tools();
         $categories=\DB::select("select * from categories where
         placeId='$placeID'");
+        if(count($categories)==0){
+            $categories=\DB::select("select * from categories where
+        placeId='0'");
+        }
         $cat=[];
+        
         foreach ($args as $value) {
             $result=$tools->searchInAssocArray($categories,'category',$value);
             if($result==false){

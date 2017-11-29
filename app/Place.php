@@ -21,7 +21,11 @@ class Place extends Model
         return (count($values)>0)?$values:abort(404);
     }
     public function getPlaceIdByName($place){
-        return $this->where("place",$place)->get();
+        $place=$this->where("place",$place)->get();
+        if(count($place)==0){
+            $place=$this->where("place","mexico")->get();
+        }
+        return $place;
     }
     public function getPlaceNameByCoordinates($lat,$long){
         if(!isset($lat)){
