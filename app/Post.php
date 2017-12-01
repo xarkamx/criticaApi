@@ -145,7 +145,6 @@ class Post extends Model{
         $query="SELECT id,date,place,title,content,full,link,excerpt FROM `posts` where $spliter and place='$placeID'
             order by id desc limit 0,30";
         $posts=\DB::select($query);
-        
-        return $posts;
+        return array_reverse($posts);
     }
 }
