@@ -21,7 +21,7 @@ class Post extends Model{
         $date=(count($latest)>0)?preg_replace("/ /","T",$latest[0]['date']):
             date("Y-m-d")."T00:00:00";
         $data=$this->getPostFromUrl(
-            $url,$postID."?_embed&per_page=100&after=$date&filter[orderby]=date&order=asc"
+            $url,$postID."?_embed&per_page=100&after=$date&filter[orderby]=date&order=desc"
             );
         $posts=[];
         if(gettype( $data)=="string"){
