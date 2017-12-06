@@ -23,11 +23,12 @@ class Post extends Model{
         $data=$this->getPostFromUrl(
             $url,$postID."?_embed&per_page=100&after=$date&filter[orderby]=date&order=asc"
             );
+            
         $posts=[];
         if(gettype( $data)=="string"){
             $data=[$data];
         }
-        if(count($data)<1){
+        if(count($data)<1 or $data==false){
             return ["error"=>"no new Posts"];
         }
         foreach($data as $key=>$item){
@@ -120,13 +121,13 @@ class Post extends Model{
             ->orderBy('date','desc')
             ->take(270)
             ->get();
-        }elseif($placeID!=null){
+        }elseif($placeID!=null && $placeID!=0){
             return $this->where("place",$placeID)
             ->take(270)
             ->orderBy('date','desc')
             ->get();    
         }else{
-            return $this->get();
+            return $this->take(100)->orderBy('date','desc')->get();
         }
     }
     private function searchQuery($search){
