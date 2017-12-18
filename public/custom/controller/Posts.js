@@ -40,4 +40,33 @@ class PostsController {
             }, "post")
         });
     }
+    async getPostByCategory(placeID = 0, category) {
+        let path = "/api/posts/" + placeID + "/category/name"
+        let result = await this.tools.ajax.fetchData(path, { category });
+        return result;
+    }
+    async addPostToPliego(placeID, postID, pliego) {
+        let path = "/api/media/impresos/posts";
+        let result = await this.tools.ajax.fetchData(path, {
+                pliego,
+                postID,
+                placeID
+            },
+            "post");
+        return result;
+    }
+    async removePostFromPliego(postID, pliego) {
+        let path = "/api/media/impresos/posts";
+        let result = await this.tools.ajax.fetchData(path, {
+                pliego,
+                postID
+            },
+            "delete");
+        return result;
+    }
+    async getLinkedPosts(pliego) {
+        let url = "/api/media/impresos/posts";
+        let result = await this.tools.ajax.fetchData(url, { pliego });
+        return result;
+    }
 }

@@ -28,7 +28,7 @@ class Templates extends Ajax {
             this.setTemplateContent(item, clone, specialEvents);
             parentDom.appendChild(clone);
         }
-        templateDom.parentElement.removeChild(templateDom);
+        templateDom.remove();
     }
     setTemplateContent(items, dom, sp) {
         for (let key in items) {
@@ -152,7 +152,8 @@ class Templates extends Ajax {
     fillMenu(name, menu, dom, sp = this) {
         menu.name = name;
         if (menu['childs'] == undefined) {
-            dom.querySelector('.childs').remove();
+            dom.querySelector('.submenu').remove();
+            dom.querySelector('.arrow').remove();
         }
         for (let index in menu) {
             let element = menu[index];

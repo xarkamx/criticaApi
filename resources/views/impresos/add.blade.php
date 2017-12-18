@@ -38,8 +38,10 @@
 @endsection
 @section('footerScripts')
 <script type="text/javascript" src="/custom/controller/Places.js"></script>
+<script type="text/javascript" src="/custom/controller/Posts.js"></script>
 <script type="text/javascript" src="/custom/controller/Impresos.js"></script>
 <script type="text/javascript" src="/custom/views/posts/impreso.js"></script>
+<script type="text/javascript" src="/custom/views/posts/impresoModal.js"></script>
 <script>
     let impresos=new Impreso();
     let target=document.querySelector('.backgroundForm');

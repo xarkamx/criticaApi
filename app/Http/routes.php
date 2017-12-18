@@ -68,6 +68,7 @@ Route::group(['prefix'=>'api'],function(){
     
     Route::get("/posts/{postID?}","Posts@index");
     Route::get("/posts/{placeID}/category/id/{categoryID}","Posts@postByCategoryId");
+    Route::get("/posts/{placeID}/category/name/","Posts@postByCategoryName");
     Route::get("/wposts/","Posts@getWPost");
     Route::get("/places/{placeID}/wposts/update","Posts@updatePosts");
     Route::get("/places/{placeID}/wposts/update/all","Posts@updateAllPosts");
@@ -100,6 +101,9 @@ Route::group(['prefix'=>'api'],function(){
     Route::get('/media/pdf/{placeID}',"Multimedia@pdf");
     Route::get('/media/impresos','Multimedia@impresos');
     Route::post('/media/impresos','Multimedia@saveImpreso');
+    Route::post('/media/impresos/posts','Pliegos@setPostToImpreso');
+    Route::get('/media/impresos/posts','Pliegos@getPostsByPliego');
+    Route::delete('/media/impresos/posts','Pliegos@deletePostFromPliego');
     Route::delete('/media/impresos','Multimedia@deleteImpresos');
     
     Route::post('reporte',"reporteCiudadano@upload");

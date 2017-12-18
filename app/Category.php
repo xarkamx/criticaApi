@@ -51,8 +51,7 @@ class Category extends Model
     'Cultura',
     'Deportes',
     'Entretenimiento',
-    'Últimas noticias',
-    'texto'
+    'Últimas noticias'
     ]){
         $tools=new Tools();
         $categories=\DB::select("select * from categories where
@@ -76,6 +75,11 @@ class Category extends Model
     public function getCategoryById($placeID,$categoryID){
         $sql="SELECT * FROM `categories` 
             where placeId='$placeID' and wpId='$categoryID'";
+        return \DB::select($sql);
+    }
+    public function getCategoryByName($placeID,$cat){
+        $sql="SELECT * FROM `categories` 
+            where placeId='$placeID' and category='$cat'";
         return \DB::select($sql);
     }
     public function setBackground($name,$file){

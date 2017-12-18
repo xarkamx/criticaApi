@@ -17,7 +17,7 @@
     <link href="/css/alter.css" rel="stylesheet">
     <link href="/plugins/datepicker/datepicker3.css" rel="stylesheet">
     <link href="/plugins/chosen/chosen.min.css" rel="stylesheet">
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     @yield('css')
 
 </head>

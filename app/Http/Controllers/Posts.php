@@ -260,6 +260,7 @@ class Posts extends Controller
          $post=new Post();
          $bitacora=new Bitacora();
          $category=new Category();
+         
          $catData=$category->getCategoryById($placeID,$categoryID);
          $catName=$catData[0]->category;
          $bitacora->setEvent(
@@ -276,6 +277,11 @@ class Posts extends Controller
     * @apiGroup Post
     * @apiVersion 0.1.0
     */
+    function postByCategoryName($placeID,Request $request){
+        $categoryArg=new Category();
+        $catData=$categoryArg->getCategoryByName($placeID,$request->category);
+        return $this->postByCategoryId($placeID,$catData[0]->wpId);
+    }
     function addPostToHomeScreen(Request $request){
          $portada=new Portada();
          return [$portada->add($request->id)];
@@ -284,7 +290,7 @@ class Posts extends Controller
         $portada=new Portada();
         return $portada->getPosts();
     }
-     function removePostToHomeScreen(Request $request){
+    function removePostToHomeScreen(Request $request){
          $portada=new Portada();
          return $portada->remove($request->id);
     }

@@ -55,4 +55,5 @@ class Multimedia extends Controller
         $media->deleteImpresos($request->path);
         return [is_dir($request->path) || is_file($request->path)];
     }
+   
 }

@@ -17,7 +17,6 @@ class Impresos {
     }
     async get(path = "/uploads/impreso/") {
         path = encodeURIComponent(path);
-        console.log(path);
         let tools = new Tools();
         return tools.ajax.fetchData("/api/media/impresos", { path });
     }

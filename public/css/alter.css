@@ -292,3 +292,54 @@
     height: 40px;
     position: relative;
 }
+
+.m_left,
+.m_right {
+    height: 80vh;
+    overflow: auto;
+    width: 49%;
+    background: #efefef;
+    display: inline-block;
+}
+
+.modal .content li {
+    margin: 10px 0!important;
+    background: white;
+    width: 99%;
+    box-shadow: 1px 1px 3px;
+    border-radius: 9px;
+    list-style: none;
+    cursor: pointer;
+}
+
+.modal .content span {
+    position: relative;
+    background: none;
+    color: black;
+    text-align: center;
+    font-size: 10px;
+    display: inline-block;
+    width: 80%;
+}
+
+.modal .content .date {
+    text-align: center;
+    background: black;
+    color: white
+}
+
+.modal .content ul {
+    padding: 0;
+}
+
+.modal .content img {
+    width: 14%;
+    height: inherit !important;
+    vertical-align: top;
+    display: inline-block;
+    margin: 0;
+}
+
+.modal .modal-xl {
+    width: 90vw;
+}

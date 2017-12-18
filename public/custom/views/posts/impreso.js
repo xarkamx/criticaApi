@@ -9,6 +9,7 @@ class Impreso {
         this.places = {};
     }
     sendFiles(target) {
+        this.target = target;
         let form = target.closest('form');
         let impresos = new Impresos();
         form.addEventListener('submit', (ev) => {
@@ -82,8 +83,10 @@ class Impreso {
             return item.id == name;
         });
         if (place.length > 0) {
-            console.log(place);
+
             child.querySelector(".delete").remove();
+            child.classList.add("place");
+            child.dataset.placeid = place[0].id;
         }
         return (place.length > 0) ? place[0].place : name;
     }
@@ -124,6 +127,7 @@ class Impreso {
             return false;
         }
         del.addEventListener("click", (ev) => {
+            ev.stopPropagation();
             let impresos = new Impresos();
             let token = document.body.dataset.csrf_token;
             impresos.delete(path, token).then((response) => {
@@ -134,8 +138,8 @@ class Impreso {
     folderOrFile(file, template, path) {
         let preview = template.querySelector(".preview");
         if (typeof file == "string") {
-            console.log(template);
             template.querySelector(".open").remove();
+            this.openPostSelector(template, path);
             preview.classList.remove("hidden");
             preview.querySelector("img").src = path;
         }
@@ -146,5 +150,14 @@ class Impreso {
             content.appendChild(newChild);
             this.fillFileList(file, child.querySelector(".content"), path);
         }
+    }
+    openPostSelector(child, path) {
+        child.addEventListener("click", (ev) => {
+            let modal = new impresoModal();
+            this.currentPath = path;
+            let place = child.closest(".place").dataset.placeid;
+            this.currentPlace = place;
+            modal.printPosts(place, path);
+        });
     }
 }

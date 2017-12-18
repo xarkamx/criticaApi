@@ -15,6 +15,7 @@ class VerifyCsrfToken extends BaseVerifier
         "api/voiceReader",
         "api/reporte",
         "api/places",
-        "api/media/impresos"
+        "api/media/impresos",
+        "api/media/impresos/posts",
     ];
 }

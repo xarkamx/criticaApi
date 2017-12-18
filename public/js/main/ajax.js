@@ -96,11 +96,12 @@ class Ajax extends Helpers {
     onFail(msg) {
         return this.error(msg);
     }
-    async fetchData(path, parameters = {}, method = "get") {
+    async fetchData(path, parameters = {}, method = "get", headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }) {
         parameters = this.objectToSerialize(parameters);
-
         let args = {
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            headers
         }
         if (method.toLowerCase() == 'get') {
             path += '?' + parameters;
@@ -110,11 +111,14 @@ class Ajax extends Helpers {
             args.body = parameters;
         }
         args.method = method;
-        //debugger;
         let data = await fetch(path, args);
-
-        return await data.json();
-
+        try {
+            return await data.json();
+        }
+        catch (e) {
+            let data = await fetch(path, args);
+            return await data.text();
+        }
 
     }
 }

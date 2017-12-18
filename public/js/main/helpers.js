@@ -3,7 +3,7 @@ class Helpers {
         let keys = Object.keys(param),
             values = [];
         for (let k in keys) {
-            let value = (typeof(param[keys[k]]) == 'object' && Array.isArray(param[keys[k]]) == false) ? JSON.stringify(param[keys[k]]) : param[keys[k]];
+            let value = (typeof (param[keys[k]]) == 'object' && Array.isArray(param[keys[k]]) == false) ? JSON.stringify(param[keys[k]]) : param[keys[k]];
             values.push(keys[k] + '=' + value);
         }
         return values.join('&');
@@ -33,7 +33,7 @@ class Helpers {
                 value = input.value.replace(/,/, '.');
                 value = encodeURIComponent(value);
             }
-            if (input == undefined || typeof(input) != 'object') {
+            if (input == undefined || typeof (input) != 'object') {
                 continue;
             }
             if (!inputs[pos].checkValidity()) {
@@ -43,7 +43,7 @@ class Helpers {
             if (content[input.name] == undefined) {
                 content[input.name] = value;
             }
-            else if (typeof(content[input.name]) == 'object') {
+            else if (typeof (content[input.name]) == 'object') {
                 content[input.name].push(value);
             }
             else {
@@ -56,7 +56,7 @@ class Helpers {
         return content;
     }
     error(msg) {
-        document.body.innerHTML=msg.responseText;
+        document.body.innerHTML = msg.responseText;
         throw msg;
     }
     removeBySelector(selector) {
@@ -96,7 +96,7 @@ class Helpers {
             });
         });
     }
-    getBodyToken(){
-        return document.body.dataset.csrf_token
+    getBodyToken() {
+        return document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     }
 }

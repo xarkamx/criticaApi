@@ -3,45 +3,32 @@
         "url": "/home",
         "fa": "fa-home"
     },
-    "Contenido": {
+    "Portada": {
         "fa": "fa-newspaper-o",
-        "childs": {
-            "Portada": {
-                "url": "/posts/sorter"
-            },
-            "Versión Impresa": {
-                "url": "/posts/impresos"
-            }
-        }
+        "url": "/posts/sorter"
     },
-    "Categorias": {
+    "Versión Impresa": {
+        "fa": "fa-newspaper-o",
+        "url": "/posts/impresos"
+    },
+    "Background de Categoria": {
         "fa": "fa-bookmark",
-        "childs": {
-            "Background": {
-                "url": "/categorias/background"
-            }
-        }
+        "url": "/categorias/background"
     },
-    "Lugares": {
+    "Ver Lugares": {
         "fa": "fa-map-marker",
-        "childs": {
-            "Ver": {
-                "url": "/places/vista"
-            },
-            "Agregar": {
-                "url": "/places/add"
-            }
-        }
+        "url": "/places/vista"
     },
-    "Usuarios": {
+    "Agregar Lugares": {
+        "fa": "fa-map-marker",
+        "url": "/places/add"
+    },
+    "Ver Usuarios": {
         "fa": "fa-user-circle",
-        "childs": {
-            "Ver Usuarios": {
-                "url": "/usuarios/vista"
-            },
-            "Agregar": {
-                "url": "/usuarios/add"
-            }
-        }
+        "url": "/usuarios/vista"
+    },
+    "Agregar Usuarios": {
+        "fa": "fa-user-circle",
+        "url": "/usuarios/add"
     }
 }
