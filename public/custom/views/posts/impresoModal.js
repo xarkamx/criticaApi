@@ -18,6 +18,7 @@ class impresoModal {
         return this.modal;
     }
     printPosts(place, pliego) {
+        pliego = pliego.replace(/\/\//gi, "/");
         let modal = this.loadModal();
         this.place = place;
         this.pliego = pliego;
