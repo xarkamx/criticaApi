@@ -8,9 +8,9 @@ use App\Helpers\Tools;
 class Portada extends Model
 {
     protected $table="Portada";
-    function add($id){
+    function add($id,$placeID){
         $tools=new Tools();
-        return $tools->saveByModel($this,["postID"=>$id]);
+        return $tools->saveByModel($this,["postID"=>$id,"placeID"=>$placeID]);
     }
     function getPosts($placeID=0){
         $sql="SELECT posts.id as portID,Portada.orden,posts.* FROM `Portada`

@@ -8,11 +8,11 @@ class PostsController {
         let result = await this.tools.ajax.fetchData(url, search, 'get');
         return result;
     }
-    addPostToHome(id) {
+    addPostToHome(id, placeID) {
         let _token = this.tools.helpers.getBodyToken();
         let url = "/api/home"
         return new Promise((load, fail) => {
-            this.tools.ajax.postData(url, { id, _token }, (ev) => {
+            this.tools.ajax.postData(url, { id, _token, placeID }, (ev) => {
                 load(ev);
             }, "post")
         });

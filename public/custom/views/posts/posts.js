@@ -4,6 +4,7 @@ class Posts {
         this.template = this.appDOM.querySelector(".listParent").cloneNode(true);
         this.pc = new PostsController();
         this.modal = new PostsModal();
+
         this.triggerEvents(this.appDOM.querySelector(".addPosts"));
         this.modal.currentPosts = {};
         this.printPlaces();
@@ -58,6 +59,7 @@ class Posts {
             let estados = this.appDOM.querySelector(".place select");
             estados.addEventListener("change", (evento) => {
                 this.placeID = evento.target.value;
+                this.modal.placeID = this.placeID;
                 this.printPortada(this.placeID);
             });
             ev.map((item) => {

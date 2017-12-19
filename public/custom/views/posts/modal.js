@@ -59,7 +59,7 @@ class PostsModal {
         dom.style.backgroundImage = "url(" + val + ")";
     }
     addPostToHome(id) {
-        this.pc.addPostToHome(id);
+        this.pc.addPostToHome(id, this.placeID);
     }
     showModal() {
         this.printAllPosts();
