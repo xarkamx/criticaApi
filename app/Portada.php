@@ -12,9 +12,10 @@ class Portada extends Model
         $tools=new Tools();
         return $tools->saveByModel($this,["postID"=>$id]);
     }
-    function getPosts(){
+    function getPosts($placeID=0){
         $sql="SELECT posts.id as portID,Portada.orden,posts.* FROM `Portada`
-            left join posts on posts.id=Portada.postID order by orden asc";
+            left join posts on posts.id=Portada.postID where placeID='0' 
+            or placeID='$placeID' order by orden asc";
         return \DB::select($sql);
     }
     function remove($id){

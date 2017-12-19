@@ -17,8 +17,16 @@
                                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
                                     </button>
                                 </div>
+                                <div class="form-group panel place">
+                                    <label>Estados</label>
+                                    <select class="form-control">
+                                        <option value="0">Global</option>
+                                    </select>
+                                </div>
                             </div>
+                            
                             <div class='postList col-sm-8 col-md-offset-2 panel'>
+                                
                                  <ul class="listParent">
                                      <li class="listTarget">
                                          <div class='portID'>
@@ -38,6 +46,7 @@
 @endsection
 @section('footerScripts')
 <script type="text/javascript" src="/custom/controller/Posts.js"></script>
+<script type="text/javascript" src="/custom/controller/Places.js"></script>
 <script type="text/javascript" src="/custom/views/posts/modal.js"></script>
 <script type="text/javascript" src="/custom/views/posts/posts.js"></script>
 <script>

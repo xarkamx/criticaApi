@@ -286,9 +286,9 @@ class Posts extends Controller
          $portada=new Portada();
          return [$portada->add($request->id)];
     }
-    function getHomePosts(){
+    function getHomePosts(Request $request){
         $portada=new Portada();
-        return $portada->getPosts();
+        return $portada->getPosts($request->placeID);
     }
     function removePostToHomeScreen(Request $request){
          $portada=new Portada();

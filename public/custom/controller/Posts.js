@@ -17,9 +17,9 @@ class PostsController {
             }, "post")
         });
     }
-    async getHomePosts() {
+    async getHomePosts(placeID) {
         let url = "/api/home";
-        let result = await this.tools.ajax.fetchData(url, {}, 'get');
+        let result = await this.tools.ajax.fetchData(url, { placeID }, 'get');
         return result;
     }
     removePostFromHome(id) {
