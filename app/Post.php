@@ -63,6 +63,7 @@ class Post extends Model{
         if(!isset($post)){
             return ['no response'];
         }
+        
         $tools->massiveBulk('posts',$posts);
         return $this->getPost($placeID,$postID);
     }
