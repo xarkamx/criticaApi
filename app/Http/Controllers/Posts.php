@@ -150,7 +150,7 @@ class Posts extends Controller
         $place=new Place();
         $location=$place->getPlaceById($placeID)[0];
         if($bitacora->isCoolDownOver(5,'update Post '.$location->url,$placeID)){
-            $bitacora->setEvent("update Post ".$location->url,$placeID);
+            //$bitacora->setEvent("update Post ".$location->url,$placeID);
             return $post->savePosts($location->url,$postID,$placeID);
         }
         return [

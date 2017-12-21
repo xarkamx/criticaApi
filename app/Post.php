@@ -13,6 +13,7 @@ class Post extends Model{
     public function getPostFromUrl($url,$postID=""){
         $tools=new Tools();
         $response=$tools->easyCurl($url.$this->wpApi."/$postID");
+        //dd($url.$this->wpApi."/$postID");
         return $response;
     }
     public function savePosts($url,$postID,$placeID){
@@ -20,10 +21,13 @@ class Post extends Model{
             ->orderBy("date","desc")->get();
         $date=(count($latest)>0)?preg_replace("/ /","T",$latest[0]['date']):
             date("Y-m-d")."T00:00:00";
+        if($this->validDate($latest[0]['date'])==false){
+            $date=date("Y-m-d")."T00:00:00";
+        }
         $data=$this->getPostFromUrl(
             $url,$postID."?_embed&per_page=100&after=$date&filter[orderby]=date&order=asc"
             );
-            
+        
         $posts=[];
         if(gettype( $data)=="string"){
             $data=[$data];
@@ -148,5 +152,19 @@ class Post extends Model{
             order by id desc limit 0,30";
         $posts=\DB::select($query);
         return array_reverse($posts);
+    }
+    public function validDate($latestDate){
+        $dt1=strtotime($latestDate);
+        $dt2=strtotime(date("Y-m-d H:i:s"));
+        $secs=$dt2-$dt1;
+         if($secs<0){
+            return false;
+        }
+        $days=$secs/86400;
+        if($days>3){
+            return false;
+        }else{
+            return true;
+        }
     }
 }
