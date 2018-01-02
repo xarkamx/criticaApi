@@ -29,9 +29,10 @@ class Reportes extends Model
         return "/uploads/archivos/$correo/".$fileName.".jpg";
     }
     function mail($data){
-        $para      = 'contacto@grupomexicopublica.com.mx';
+        $para      = 'contacto@grupomexicopublica.com.mx,programacion@web-gdl.com';
         $titulo    = 'Reporte ciudadano';
         $imagen="http://" . $_SERVER['SERVER_NAME'] ."/".$data['imagen'];
+        $maps="https://www.google.com.mx/maps/search/".$data['coordenadas'];
         $mensaje   = $data['descripcion']."\n".$imagen;
         $cabeceras = 'From: '.$data['correo']. "\r\n" .
             'Reply-To:'.$data['correo']. "\r\n" .
