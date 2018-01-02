@@ -33,7 +33,7 @@ class Reportes extends Model
         $titulo    = 'Reporte ciudadano';
         $imagen="http://" . $_SERVER['SERVER_NAME'] ."/".$data['imagen'];
         $maps="https://www.google.com.mx/maps/search/".$data['coordenadas'];
-        $mensaje   = $data['descripcion']."\n".$imagen;
+        $mensaje   = $data['descripcion']."\n".$imagen."\n".$maps;
         $cabeceras = 'From: '.$data['correo']. "\r\n" .
             'Reply-To:'.$data['correo']. "\r\n" .
             'X-Mailer: PHP/' . phpversion();

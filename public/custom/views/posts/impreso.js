@@ -94,8 +94,8 @@ class Impreso {
         let filename = child.querySelector(".fileName");
         let name = file;
         if (typeof file == "object") {
-            filename.innerHTML = this.setMainFolderName(index, this.places, child);
-            name = "";
+            name = this.setMainFolderName(index, this.places, child);
+            filename.innerHTML = name;
         }
         else {
             filename.innerHTML = file;
