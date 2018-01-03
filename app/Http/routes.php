@@ -16,7 +16,7 @@ Route::post('/login', "Users@login");
 Route::get('/logout', "Users@logout");
 Route::group(['prefix'=>'home',"middleware"=>'admin'],function(){
     Route::get('/',function (){
-        return view('home.home');
+        return view('home.freehome');
     });
 });
 Route::group(['prefix'=>'categorias',"middleware"=>'admin'],function(){
