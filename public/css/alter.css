@@ -124,12 +124,13 @@
 }
 
 .logo {
-    background: url(/uploads/logos/web-gdl.jpg);
+    background: url(/uploads/logos/gmp.png) #FFF;
     height: 300px;
     width: 300px;
     border-radius: 100%;
-    background-size: 90%;
+    background-size: 80%;
     background-position: 50%;
+    background-repeat: no-repeat;
 }
 
 .loggin {

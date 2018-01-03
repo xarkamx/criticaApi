@@ -147,8 +147,11 @@ class Post extends Model{
         return implode("and",$queries);
     }
     public function getPostByCategory($placeID,$categoryID){
-        $spliter='FIND_IN_SET("'.$categoryID.'",replace(replace(categories,"]",""),"[",""))>0';
-        $query="SELECT id,date,place,title,content,full,link,excerpt FROM `posts` where $spliter and place='$placeID'
+        $spliter='FIND_IN_SET("'.$categoryID.'",
+            replace(replace(categories,"]",""),"[",""))>0';
+        $query="SELECT id,date,place,title,
+        content,full,link,excerpt FROM `posts`
+        where $spliter and place='$placeID'
             order by date desc limit 0,30";
         $posts=\DB::select($query);
         return array_reverse($posts);

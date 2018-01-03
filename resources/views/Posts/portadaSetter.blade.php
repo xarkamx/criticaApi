@@ -36,6 +36,7 @@
                                                     <input type="number" placeHolder="Orden" class="orden form-control"/>
                                              </div>
                                              <button class="btn btn-danger delete">x</button>
+                                             <div class="place"></div>
                                          </div>
                                      </li>
                                  </ul>   

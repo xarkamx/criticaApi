@@ -22,7 +22,6 @@ class Posts {
     printPortada(place = 0) {
 
         this.pc.getHomePosts(place).then((ev) => {
-
             if (JSON.stringify(this.modal.currentPosts) == JSON.stringify(ev)) {
                 return false;
             }
@@ -31,12 +30,19 @@ class Posts {
             let parent = this.template.cloneNode(true);
             let target = parent.querySelector('.listTarget');
             this.pc.tools.templates.fillTemplate(parent, target, ev, this);
+            console.log(this);
             this.appDOM.querySelector(".postList").innerHTML = "";
             this.appDOM.querySelector(".postList").appendChild(parent);
         });
     }
     thumbnail(dom, val) {
         dom.style.backgroundImage = "url(" + val + ")";
+    }
+    place(dom, val) {
+        if (val == 0) {
+            dom.innerHTML = "GLOBAL";
+            dom.style.color = "green";
+        }
     }
     portID(dom, val) {
         dom.querySelector(".delete").addEventListener('click', (ev) => {
@@ -73,4 +79,5 @@ class Posts {
             });
         });
     }
+
 }

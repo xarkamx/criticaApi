@@ -9,6 +9,42 @@
                         <canvas id="myChart"  style='max-height:400px;'></canvas>
                         </center>
                     </div>
+                    <div class="panel panel-default col-md-3">
+                        <div class="panel-heading">Post Más leido</div>
+                          
+                        <div class="panel-body">
+                          </div>
+                    </div>
+                    <div class="panel panel-default col-md-3">
+                        <div class="panel-heading">Categoria más visitada</div>
+                          
+                        <div class="panel-body">
+                          </div>
+                    </div>
+                    <div class="panel panel-default col-md-3">
+                        <div class="panel-heading">Nota preferida por el publico</div>
+                          
+                        <div class="panel-body">
+                          </div>
+                    </div>
+                    <div class="panel panel-default col-md-3">
+                        <div class="panel-heading">Más Buscado</div>
+                          
+                        <div class="panel-body">
+                          </div>
+                    </div>
+                    <div class="panel panel-default col-md-12">
+                      <div class="panel-heading">Bitacora</div>
+                      <div class="panel-body">
+                          
+                      </div>
+                    </div>
+                    <div class="panel panel-default col-md-12">
+                      <div class="panel-heading">Reporte ciudadano</div>
+                      <div class="panel-body">
+                          
+                      </div>
+                    </div>
 </div>
 
     
