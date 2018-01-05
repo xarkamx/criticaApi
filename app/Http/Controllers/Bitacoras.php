@@ -26,4 +26,8 @@ class Bitacoras extends Controller
             )];
         }
     }
+    function get(Request $request,$type){
+        $bitacora=new Bitacora();
+        return $bitacora->getByType($type,$request->limit);
+    }
 }

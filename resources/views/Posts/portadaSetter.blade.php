@@ -27,16 +27,21 @@
                             
                             <div class='postList col-sm-8 col-md-offset-2 panel'>
                                 
-                                 <ul class="listParent">
-                                     <li class="listTarget">
-                                         <div class='portID'>
-                                             <div class="image thumbnail"></div>
-                                             <div class="title">Cargando</div>
-                                             <div class="form-group">
-                                                    <input type="number" placeHolder="Orden" class="orden form-control"/>
+                                 <ul class="listParent list-group col-sm-12">
+                                     <li class="listTarget list-group-item col-sm-12">
+                                         <div class='portID col-sm-12 portada'>
+                                             <div class="listBody col-sm-12">
+                                                 <div class="image thumbnail col-sm-2"></div>
+                                                 <div class="title col-sm-4">Cargando</div>
+                                                 <div class="form-group col-sm-3">
+                                                        <input type="number" placeHolder="Orden" class="orden form-control"/>
+                                                 </div>
+                                                 <button class="btn btn-danger delete col-sm-1">x</button>
+                                                <div class="place col-sm-1" title="Global"></div>
+                                                <div class="filtro col-sm-1">
+                                                    <i class='fa fa-eye' title="Visible" aria-hidden='true'></i>
+                                                </div>
                                              </div>
-                                             <button class="btn btn-danger delete">x</button>
-                                             <div class="place"></div>
                                          </div>
                                      </li>
                                  </ul>   

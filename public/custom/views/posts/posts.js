@@ -30,7 +30,7 @@ class Posts {
             let parent = this.template.cloneNode(true);
             let target = parent.querySelector('.listTarget');
             this.pc.tools.templates.fillTemplate(parent, target, ev, this);
-            console.log(this);
+
             this.appDOM.querySelector(".postList").innerHTML = "";
             this.appDOM.querySelector(".postList").appendChild(parent);
         });
@@ -39,8 +39,9 @@ class Posts {
         dom.style.backgroundImage = "url(" + val + ")";
     }
     place(dom, val) {
+        this.currentPlace = val;
         if (val == 0) {
-            dom.innerHTML = "GLOBAL";
+            dom.innerHTML = "<i class='fa fa-globe' aria-hidden='true'></i>";
             dom.style.color = "green";
         }
     }
@@ -54,6 +55,21 @@ class Posts {
         dom.querySelector('.orden').addEventListener("change", (ev) => {
             this.pc.orderPostsInHome(val, ev.target.value);
         });
+
+    }
+    portada(dom, val) {
+        dom.querySelector(".filtro").addEventListener("click", (ev) => {
+            this.toggleVisibility(val);
+        })
+    }
+    filtro(dom, val) {
+        if (this.currentPlace != 0) {
+            dom.innerHTML = "";
+        }
+        if (val != null) {
+            dom.style.color = "#D00";
+            dom.innerHTML = "<i class='fa fa-eye-slash' Title='Oculto' aria-hidden='true'></i>";
+        }
     }
     orden(dom, val) {
         dom.value = val;
@@ -79,5 +95,9 @@ class Posts {
             });
         });
     }
-
+    toggleVisibility(val) {
+        this.pc.toggleStatus(val, this.placeID).then((ev) => {
+            this.printPortada(this.placeID);
+        });
+    }
 }

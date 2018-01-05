@@ -79,6 +79,8 @@ Route::group(['prefix'=>'api'],function(){
     Route::post("/home","Posts@addPostToHomeScreen");
     Route::delete("/home","Posts@removePostToHomeScreen");
     Route::put("/home/order","Posts@orderPostsInHome");
+    Route::get("/home/hide","Posts@hidePost");
+    Route::get("/home/uncensored","Posts@getHomeUncensoredPosts");
     
     Route::get("/notifications/push","Notifications@sendNotification");
     Route::get("/notifications/push/{postID}/{placeID}/{topic}","Notifications@pushById");
@@ -108,6 +110,7 @@ Route::group(['prefix'=>'api'],function(){
     
     Route::post('reporte',"reporteCiudadano@upload");
     Route::get('/bitacora',"Bitacoras@index");
+    Route::get('/bitacora/{type}',"Bitacoras@get");
     
 });
 Route::group(["prefix"=>"test","middleware"=>'admin'],function(){

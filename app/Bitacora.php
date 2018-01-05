@@ -31,4 +31,7 @@ class Bitacora extends Model
         evento='$event' and placeID='$placeID'");
         return (count($data)<=0);
     }
+    function getByType($type,$limit=10){
+        return $this->where("type",$type)->limit($limit)->orderBy('id', 'DESC')->get();
+    }
 }

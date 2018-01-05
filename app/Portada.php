@@ -13,9 +13,36 @@ class Portada extends Model
         return $tools->saveByModel($this,["postID"=>$id,"placeID"=>$placeID]);
     }
     function getPosts($placeID=0){
-        $sql="SELECT posts.id as portID,Portada.orden,posts.*,Portada.placeID as place FROM `Portada`
-            left join posts on posts.id=Portada.postID where placeID='0' 
-            or placeID='$placeID' order by orden asc";
+        $filterQuery="(
+                SELECT id, portId
+                FROM Hidden
+                WHERE placeID ='$placeID'
+            ) as filter on Portada.id=filter.portId";
+            
+            
+        $sql="SELECT posts.id as portID,Portada.orden,posts.*
+        ,Portada.placeID as place, filter.id as filtro FROM `Portada`
+            left join posts on posts.id=Portada.postID
+            left join $filterQuery 
+            where placeID='0' 
+            or placeID='$placeID' having filtro is null order by orden asc";
+                
+        return \DB::select($sql);
+        
+    }
+    function getUncensoredPost($placeId=0){
+        $filterQuery="(
+                SELECT id, portId
+                FROM Hidden
+                WHERE placeID ='$placeId'
+            ) as filter on Portada.id=filter.portId";
+        $sql="SELECT posts.id as portID,Portada.orden,posts.*
+        ,Portada.placeID as place, filter.id as filtro,Portada.id as portada FROM `Portada`
+            left join posts on posts.id=Portada.postID
+            left join $filterQuery 
+            where placeID='0' 
+            or placeID='$placeId' order by orden asc";
+                
         return \DB::select($sql);
     }
     function remove($id){

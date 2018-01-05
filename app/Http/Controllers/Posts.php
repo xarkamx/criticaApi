@@ -10,6 +10,7 @@ use App\Post;
 use App\Bitacora;
 use App\Portada;
 use App\Category;
+use App\Hidden;
 class Posts extends Controller
 {
     /**
@@ -150,7 +151,7 @@ class Posts extends Controller
         $place=new Place();
         $location=$place->getPlaceById($placeID)[0];
         if($bitacora->isCoolDownOver(5,'update Post '.$location->url,$placeID)){
-            //$bitacora->setEvent("update Post ".$location->url,$placeID);
+            $bitacora->setEvent("update Post ".$location->url,$placeID);
             return $post->savePosts($location->url,$postID,$placeID);
         }
         return [
@@ -290,6 +291,10 @@ class Posts extends Controller
         $portada=new Portada();
         return $portada->getPosts($request->placeID);
     }
+    function getHomeUncensoredPosts(Request $request){
+        $portada=new Portada();
+        return $portada->getUncensoredPost($request->placeID);
+    }
     function removePostToHomeScreen(Request $request){
          $portada=new Portada();
          return $portada->remove($request->id);
@@ -297,5 +302,9 @@ class Posts extends Controller
     function orderPostsInHome(Request $request){
         $portada=new Portada();
         return [$portada->changeOrder($request->id,$request->orden)];
+    }
+    function hidePost(Request $request){
+        $hidden=new Hidden();
+        return [$hidden->toggleStatus($request->toArray())];
     }
 }

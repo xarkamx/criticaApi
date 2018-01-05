@@ -18,7 +18,7 @@ class PostsController {
         });
     }
     async getHomePosts(placeID) {
-        let url = "/api/home";
+        let url = "/api/home/uncensored";
         let result = await this.tools.ajax.fetchData(url, { placeID }, 'get');
         return result;
     }
@@ -68,5 +68,9 @@ class PostsController {
         let url = "/api/media/impresos/posts";
         let result = await this.tools.ajax.fetchData(url, { pliego });
         return result;
+    }
+    async toggleStatus(portId, placeId) {
+        let tools = new Tools();
+        return await tools.ajax.fetchData("/api/home/hide", { portId, placeId });
     }
 }
