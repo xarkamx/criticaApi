@@ -154,7 +154,7 @@ class Post extends Model{
         where $spliter and place='$placeID'
             order by date  desc limit 0,30";
         $posts=\DB::select($query);
-        return array_reverse($posts);
+        return $posts;
     }
     public function validDate($latestDate){
         $dt1=strtotime($latestDate);
