@@ -29,7 +29,7 @@ class Place extends Model
     }
     public function getPlaceNameByCoordinates($lat,$long){
         if(!isset($lat)){
-            abort(404);
+            return "mexico";
         }
         $tools=new Tools();
         $googleMap='https://maps.googleapis.com/maps/api/geocode/json';
