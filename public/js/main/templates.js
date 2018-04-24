@@ -2,7 +2,7 @@
 class Templates extends Ajax {
     /**
      * @param {DOM} parentDom
-     * @param {DOM} targetDom
+     * @param {DOM} templateDom
      * @param {object||array||json} data
      * @param {object} specialEvents permite customizar la impresion de un argumento
      * por la clase de su DOM, por ejemplo si la clase de tu Dom objetivo es
@@ -104,7 +104,38 @@ class Templates extends Ajax {
                 sp[name](input, data[name]);
                 continue;
             }
+            if(input.type=='radio'){
+                input.checked=(input.value==data[name]);
+                continue;
+            }
             input.value = data[name] || input.value;
+        }
+    }
+    formOnError(data,form){
+        if(data.error==undefined){
+            return false;
+        }
+        data=data.error;
+        if(data.alert!=undefined){
+            alert(data.alert);
+        }
+        if (typeof data != 'object') {
+            data = JSON.parse(data);
+        }
+        if (Array.isArray(data)) {
+            data = data[data.length - 1];
+        }
+        let inputs = form.querySelectorAll('input,select,textarea');
+        for (let index = 0; index < inputs.length; ++index) {
+            let input = inputs[index];
+            let name = input.name;
+            if(data[name]==undefined){
+                continue;
+            }
+            
+            input.placeholder = data[name];
+            input.classList.add('error');
+            input.value="";
         }
     }
     setInput(input) {
@@ -177,5 +208,71 @@ class Templates extends Ajax {
         parent.appendChild(clone);
         this.fillTemplate(parent, clone, data, singularity);
         parent.insertAdjacentHTML('beforeEnd', childs);
+    }
+    quickFill(targetNode,data,singularity={}){
+            this.setTemplateContent(data,targetNode,singularity);
+    }
+    addToSelect(select,name,value){
+        let option=document.createElement('option');
+        option.innerHTML=name;
+        option.value=value;
+        select.add(option);
+    }
+    addMultipleOptionsToSelect(select,args){
+        select.innerHTML='';
+        for(let key in args){
+            this.addToSelect(select,args[key],key);
+        }
+    }
+    loadTemplate(dom,target){
+        target.innerHTML="";
+        target.insertAdjacentHTML('beforeEnd',dom.innerHTML);
+        return target;
+    }
+    loadBeforeTemplate(dom,target){
+        target.insertAdjacentHTML('afterBegin',dom.innerHTML);
+        return target;
+    }
+    jsonToList(object,alias,ignore='id'){
+        let ul=document.createElement('ul');
+        let li=document.createElement('li');
+        li.classList.add('list-group-item');
+        if(typeof object=="string"){
+            li.innerHTML="<strong>"+object+"</strong>";
+            ul.appendChild(li);
+            return ul;
+        }
+        for(let keys in object){
+            let item=object[keys];
+            let apodo=alias[keys];
+            let skip=ignore.search(keys);
+            if(skip!=-1){
+                continue;
+            }
+            if(typeof item=="object"){
+                let childUl=this.jsonToList(item,alias,ignore);
+                ul.appendChild(childUl);
+                continue;
+            }
+            if(apodo!=undefined){
+                keys=apodo;
+            }
+            try{
+                if(isNaN(item)){
+                    item=JSON.parse(item);
+                    let childUl=this.jsonToList(item,alias,ignore);
+                    console.log(item);
+                    ul.appendChild(childUl);
+                    continue;
+                }
+            }catch(e){
+
+            }
+
+            li.innerHTML="<strong>"+keys+": </strong>"+item;
+            let liclon=li.cloneNode(true);
+            ul.appendChild(liclon);
+        }
+        return ul;
     }
 }

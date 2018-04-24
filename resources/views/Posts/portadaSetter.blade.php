@@ -1,5 +1,5 @@
 @extends('header.header')
-@section('title','critica | Organizar Portada');
+@section('title','critica | Organizar Portada')
 @section('css')
 <link href="/themes/inspina/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 @endsection

@@ -122,4 +122,8 @@ class Places extends Controller
         return $place->updatePlace($data);
         
     }
+    public function killPlace(Request $request){
+        $place=new Place();
+        return $place->where('id',$request->id)->delete();
+    }
 }

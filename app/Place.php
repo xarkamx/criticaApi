@@ -68,9 +68,9 @@ class Place extends Model
     }
     public function updatePlace(Array $data){
         $tools=new Tools();
-        $column=$data["column"];
-        $value=$data["value"];
-        $id=$data["id"];
-        return \DB::select("update places set $column='$value' where id='$id'");
+        $id=$data['id'];
+        unset($data['id']);
+        $tools->saveByModel($this,$data,$jsonRef=null,'id',$id);
+        return $this->where('id',$id)->get()->first();
     }
 }

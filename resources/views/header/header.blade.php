@@ -29,6 +29,7 @@
 <script src="/js/main/dom.js"></script>
 <script src="/js/main/tools.js"></script>
 <script src="/custom/views/global/menu.js"></script>
+<script src="/custom/views/global/modal.js"></script>
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
@@ -85,7 +86,7 @@
         </div>
         <div class="footer">
             <div class="pull-right">
-                <strong>Rastreo RCL</strong>
+                <strong>Grupo Mexico Publica</strong>
             </div>
             <div>
                 <strong>Desarrollado por</strong> <a href='http://web-gdl.com'>WEBGDL</a> 2017-2018
@@ -94,7 +95,9 @@
 
     </div>
 </div>
-
+<template id="modal">
+            @include('modal.modal')
+        </template>
 <!-- Mainly scripts -->
 <script src="/themes/inspina/js/jquery-2.1.1.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>

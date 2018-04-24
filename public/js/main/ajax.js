@@ -117,7 +117,7 @@ class Ajax extends Helpers {
         }
         catch (e) {
             let data = await fetch(path, args);
-            return await data.text();
+            document.write(await data.text());
         }
 
     }

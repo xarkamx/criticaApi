@@ -54,7 +54,7 @@ Route::group(['prefix'=>'api'],function(){
     });
     
     
-    Route::get("/users/all/{id?}","Users@index");
+    Route::get("/users/all/{id?}","Users@getUserBy");
     Route::get("/users/current","Users@currentUser");
     Route::post("/users/all/{id?}","Users@set");
     Route::delete("/users/{id?}","Users@delete");
@@ -65,6 +65,7 @@ Route::group(['prefix'=>'api'],function(){
     Route::post("/places/","Places@savePlaces");
     Route::put("/places/","Places@updatePlaces");
     Route::post("/places/bulk","Places@setPlaces");
+    Route::delete("/places/","Places@killPlace");
     
     Route::get("/posts/{postID?}","Posts@index");
     Route::get("/posts/{placeID}/category/id/{categoryID}","Posts@postByCategoryId");

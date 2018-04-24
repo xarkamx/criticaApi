@@ -31,7 +31,7 @@ class Users extends Controller
         \Auth::logout();
         return redirect("/");
     }
-    public function index(Request $request){
+    public function getUserBy(Request $request){
         $users=new User();
         return $users->printUsers($request->by,$request->value);
     }

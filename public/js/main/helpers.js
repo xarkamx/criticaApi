@@ -22,9 +22,16 @@ class Helpers {
             var value;
             if (input.type == 'file') {
                 value = input.files;
+                input.name
             }
             else if (input.type == 'checkbox') {
                 value = input.checked;
+            }
+            else if (input.type == 'radio' ) {
+                if(input.checked==false){
+                    continue;
+                }
+                value = input.value;
             }
             else {
                 if (input.value == '') {
@@ -98,5 +105,60 @@ class Helpers {
     }
     getBodyToken() {
         return document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+    }
+    merge(...objs){
+        let finalObject={}
+        for(let index in objs){
+            let obj=objs[index];
+            for(let keys in obj){
+                finalObject[keys]=obj[keys];
+            }
+        }
+        return finalObject;
+    }
+    searchAndDestroy(args,key,value){
+        let filter=args.filter((item,index)=>{
+            return item[key]!=value;
+            
+        });
+        return filter;
+    }
+    searchAndInsert(args,where,val,key,insert){
+        return args.map((item,index)=>{
+            if(item[where]==val){
+                item[key]=insert;
+            }
+            return item;
+        })
+    }
+    searchByKey(args,key,value){
+        let filter=args.filter((item,index)=>{
+            return item[key]==value;
+            
+        });
+        return filter;
+    }
+    searchInObject(args,query) {
+        return args.filter((item, index) => {
+            for (let key in item) {
+                if(item[key]==null){
+                    continue;
+                }
+                let data = item[key].toString();
+                let regQuery = RegExp(query, "i");
+                let match = data.match(regQuery);
+                if (match != null) {
+                    return true;
+                }
+            }
+            return false;
+        });
+    }
+    getObjectTitles(obj){
+        let result=[];
+        for (let key in obj){
+            result.push({key})
+        }
+        return result;
     }
 }

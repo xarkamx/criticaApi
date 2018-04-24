@@ -17,21 +17,32 @@
                                     <th>Ruta</th>
                                     <th>Alias</th>
                                     <th>Twitter</th>
+                                    <th>Acciones</th>
                                 </thead>
                                 <tbody>
                                     <tr class='place'>
-                                        <td class='country id'>Cargando</td>
+                                        <td class='country'>Cargando</td>
                                         <td class='place'>Cargando</td>
                                         <td class='url'>Cargando</td>
                                         <td class='alias'>Cargando</td>
                                         <td class='twitter'>Cargando</td>
+                                        <td class='id'>
+                                            <div class="btn btn-success btn-sm editar">
+                                                <i class="fa fa-edit"></i>
+                                            </div>
+                                            <div class="btn btn-danger btn-sm eliminar">
+                                                <i class="fa fa-trash"></i>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 </div>
-
+<template id="editPlace">
+            @include('lugares.plantillas.addForm');
+</template>
     
 @endsection
 @section('footerScripts')

@@ -23,13 +23,13 @@ class Tools
         $split=preg_split('/(?=[A-Z])/', $s, -1, PREG_SPLIT_NO_EMPTY);
         return implode(' ',$split);
     }
-    public function saveByModel($modal,$args,$jsonRef=null,$column='id',$id=null){
+    public function saveByModel($modal,$args,$jsonRef=null,$column='id',$query=25){
         
             $table=$modal->getTable();
             $data=new \stdClass();
             $updateArgs=[];
-            $mod=$this->exist_in_modal($modal,$column,$id);
-            if($id==null||$mod==false){
+            $mod=$this->exist_in_modal($modal,$column,$query);
+            if($query==null||$mod==false){
                 $data=new $modal();
             }
             if($jsonRef==null){
@@ -51,7 +51,7 @@ class Tools
                     $updateArgs[$key]=$value;   
                 }
             }
-            if($id==null||$mod==false){
+            if($query==null||$mod==false){
                 unset($data->created_at);
                 unset($data->updated_at);
                  
