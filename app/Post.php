@@ -77,6 +77,12 @@ class Post extends Model{
         $date=(count($latest)>0)?preg_replace("/ /","T",$latest[0]['date']):
             date("Y-m-d")."T00:00:00";
         $data=$this->getPostFromUrl($url,$postID."?_embed&per_page=100");
+        $posts=$this->prepareBulk($data,$placeID);
+        $tools=new Tools();
+        $tools->massiveBulk('posts',$posts);
+        return $this->getPost($placeID,$postID);
+    }
+    public function prepareBulk($data,$placeID=91) {
         $posts=[];
         if(!isset($data[0])){
             $data=[$data];
@@ -87,17 +93,18 @@ class Post extends Model{
         
         foreach($data as $key=>$item){
             if(!isset($item['_embedded']['wp:featuredmedia'])){
-                $item['_embedded']['wp:featuredmedia'][0]['source_url']="http://www.criticajalisco.com/wp-content/themes/critica2/img/logos/critica.png";
+                $item['_embedded']['wp:featuredmedia'][0]['source_url']="https://www.mexicopublica.com/wp-content/themes/critica2/img/logos/critica.png";
             }
             $media=$item['_embedded']['wp:featuredmedia'][0];
-            $thumb="http://www.criticajalisco.com/wp-content/themes/critica2/img/logos/critica.png";
+            $thumb="https://www.mexicopublica.com/wp-content/themes/critica2/img/logos/critica.png";
             if(isset($media['media_details']['sizes']['thumbnail'])){
                $thumb=$media['media_details']['sizes']['thumbnail']['source_url'];
             }
             if(!isset($media['source_url'])){
-                $media['source_url']="https://www.criticajalisco.com/wp-content/themes/critica2/img/logos/critica.png";
+                $media['source_url']="https://www.mexicopublica.com/wp-content/themes/critica2/img/logos/critica.png";
             }
             $full=$media['source_url'];
+            $post['id']=$item['id'];
             $post['wpId']=$item['id'];
             $post['date']=$item['date'];
             $post['place']=$placeID;
@@ -109,9 +116,7 @@ class Post extends Model{
             $post['thumbnail']=$thumb;
             $posts[]=$post;
         }
-        $tools=new Tools();
-        $tools->massiveBulk('posts',$posts);
-        return $this->getPost($placeID,$postID);
+        return $posts;
     }
     public function getPost($placeID,$postID=null,$search=null){
         if($search!=null){
