@@ -19,13 +19,14 @@ class VoiceReader extends Model
             "f"=>"44khz_16bit_mono"
             );
         $path=dirname(__DIR__)."/public/uploads/archivos/$filename.mp3";
+        $url = "/uploads/archivos/$filename.mp3";
         if(file_exists($path)){
-            return file_get_contents($path);
+            return [$url];
         }
         $result=$tools->easyCurl("http://api.voicerss.org",null,$args);
         $file=fopen($path,"w");
         fwrite($file,$result);
         fclose($file);
-        return $result;
+        return [$url];
     }
 }
