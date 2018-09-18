@@ -114,6 +114,7 @@ class Post extends Model{
             $post['categories']=json_encode($item['categories']);
             $post['full']=$full;
             $post['thumbnail']=$thumb;
+            $post['link']=$item['link'];
             $posts[]=$post;
         }
         return $posts;
